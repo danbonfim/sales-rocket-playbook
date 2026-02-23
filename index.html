@@ -46,7 +46,6 @@
             align-items: center;
             gap: 0.5rem;
         }
-
         .logo span { color: white; }
 
         .badge {
@@ -80,10 +79,19 @@
             border-bottom-color: var(--primary);
         }
 
-        .section-content { display: none; animation: fadeIn 0.5s ease; }
-        .section-content.active { display: block; }
+        .section-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .grid-3 {
             display: grid;
@@ -100,7 +108,11 @@
             transition: 0.3s;
         }
 
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
         .card h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; }
         .card p { color: var(--text-muted); font-size: 0.95rem; }
 
@@ -112,7 +124,6 @@
 
         .form-group { margin-bottom: 1.5rem; }
         label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
-
         select, input, textarea {
             width: 100%;
             background: #0D1117;
@@ -173,162 +184,268 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <div class="logo">🚀 Sales <span>Rocket</span></div>
+            <div class="badge">Ultra Playbook v2.5</div>
+        </header>
 
-<div class="container">
-    <header>
-        <div class="logo">🚀 Sales <span>Rocket</span></div>
-        <div class="badge">Ultra Playbook v2.2</div>
-    </header>
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('playbook')">Ultra Playbook</div>
+            <div class="nav-tab" onclick="showSection('generator')">Gerador de Conteúdo</div>
+        </div>
 
-    <div class="nav-tabs">
-        <div class="nav-tab active" onclick="showSection('playbook')">Ultra Playbook</div>
-        <div class="nav-tab" onclick="showSection('generator')">Gerador de Conteúdo</div>
-    </div>
+        <div id="playbook" class="section-content active">
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Gabriel Dias</h3>
+                    <p>O Estrategista comercial focado em GTM e visão C-level. Autoridade em MEDDIC e arquitetura de receita.</p>
+                </div>
+                <div class="card">
+                    <h3>Enrico Bianchi</h3>
+                    <p>O Operador comercial focado em processos, CRM e Pipeline Velocity. O mestre da execução tática.</p>
+                </div>
+                <div class="card">
+                    <h3>Thiago Hortolan</h3>
+                    <p>O Gerador de Demanda focado em outbound, Social Selling e construção de pipeline de alta performance.</p>
+                </div>
+            </div>
+        </div>
 
-    <div id="playbook" class="section-content active">
-        <div class="grid-3">
-            <div class="card"><h3>Gabriel Dias</h3><p>O Estrategista comercial focado em GTM e visão C-level.</p></div>
-            <div class="card"><h3>Enrico Bianchi</h3><p>O Operador comercial focado em processos e CRM.</p></div>
-            <div class="card"><h3>Thiago Hortolan</h3><p>O Gerador de Demanda focado em outbound e pipeline.</p></div>
+        <div id="generator" class="section-content">
+            <div class="generator-layout">
+                <div class="form-panel">
+                    <div class="form-group">
+                        <label>Perfil do Autor</label>
+                        <select id="perfil">
+                            <option value="gabriel">Gabriel Dias</option>
+                            <option value="enrico">Enrico Bianchi</option>
+                            <option value="thiago">Thiago Hortolan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Post</label>
+                        <select id="tipo">
+                            <option value="storytelling">Storytelling (Conexão)</option>
+                            <option value="lista">Lista (Autoridade)</option>
+                            <option value="how-to">How-to (Educação)</option>
+                            <option value="provocacao">Provocação (C-Level)</option>
+                            <option value="insight">Insight Rápido (Engajamento)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tema Principal</label>
+                        <input type="text" id="tema" placeholder="Ex: Prospecção B2B, GTM Strategy...">
+                    </div>
+                    <div class="form-group">
+                        <label>Keyword CTA (Lead Magnet)</label>
+                        <select id="cta">
+                            <option value="CASE">CASE (Prova Social)</option>
+                            <option value="PROCESSO">PROCESSO (Operação)</option>
+                            <option value="SDR">SDR (Time)</option>
+                            <option value="GTM">GTM (Estratégia)</option>
+                        </select>
+                    </div>
+                    <button class="btn" id="gerarBtn">Gerar Conteúdo Único 🚀</button>
+                </div>
+
+                <div class="output-area">
+                    <label>LinkedIn Post</label>
+                    <div class="output-box" id="postOutput">...<button class="copy-btn" id="copyPost">Copiar</button></div>
+                    
+                    <label>Image Prompt (Nano Banana)</label>
+                    <div class="output-box" id="promptOutput">...<button class="copy-btn" id="copyPrompt">Copiar</button></div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="generator" class="section-content">
-        <div class="generator-layout">
-            <div class="form-panel">
-                <div class="form-group">
-                    <label>Perfil do Autor</label>
-                    <select id="perfil">
-                        <option value="gabriel">Gabriel Dias</option>
-                        <option value="enrico">Enrico Bianchi</option>
-                        <option value="thiago">Thiago Hortolan</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Tipo de Post</label>
-                    <select id="tipo">
-                        <option value="storytelling">Storytelling</option>
-                        <option value="lista">Lista</option>
-                        <option value="how-to">How-to</option>
-                        <option value="antes-depois">Antes/Depois</option>
-                        <option value="decisao">Decisão</option>
-                        <option value="hack">Hack</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Tema</label>
-                    <input type="text" id="tema">
-                </div>
-                <div class="form-group">
-                    <label>Keyword CTA</label>
-                    <select id="cta">
-                        <option value="CASE">CASE</option>
-                        <option value="PROCESSO">PROCESSO</option>
-                        <option value="SDR">SDR</option>
-                    </select>
-                </div>
-                <button class="btn" id="gerarBtn">Gerar Conteúdo</button>
-            </div>
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
 
-            <div class="output-area">
-                <label>LinkedIn Post</label>
-                <div class="output-box" id="postOutput">...<button class="copy-btn" id="copyPost">Copiar</button></div>
-                <label>Image Prompt</label>
-                <div class="output-box" id="promptOutput">...<button class="copy-btn" id="copyPrompt">Copiar</button></div>
-            </div>
-        </div>
-    </div>
-</div>
+        const perfilData = {
+            gabriel: { 
+                foco: 'estratégia e visão C-level', 
+                frameworks: ['MEDDIC', 'GTM Architect'],
+                tom: 'visionário e analítico'
+            },
+            enrico: { 
+                foco: 'processos e CRM', 
+                frameworks: ['Pipeline Velocity', 'CRM Ops'],
+                tom: 'prático e direto'
+            },
+            thiago: { 
+                foco: 'demanda e outbound', 
+                frameworks: ['Social Selling', 'Outbound 2.0'],
+                tom: 'agressivo e focado em volume/qualidade'
+            }
+        };
 
-<script>
-    function showSection(id) {
-        document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
+        const templates = {
+            storytelling: [
+                (d, t, k) => `Sabe aquela sensação de que você está vendendo muito, mas não está crescendo? 
 
-    const perfilData = {
-        gabriel: { nome: 'Gabriel Dias', foco: 'estratégia e visão C-level', frameworks: ['MEDDIC', 'GTM Architect'] },
-        enrico: { nome: 'Enrico Bianchi', foco: 'processos e CRM', frameworks: ['Pipeline Velocity', 'CRM Ops'] },
-        thiago: { nome: 'Thiago Hortolan', foco: 'demanda e outbound', frameworks: ['Social Selling', 'Outbound 2.0'] }
-    };
+Aconteceu com um cliente que falava sobre ${t}. O problema era a falta de ${d.foco}. 
 
-    const templates = {
-        storytelling: [
-            (d, t, k) => `Sabe aquela sensação de que você está vendendo muito, mas não está crescendo?
-Aconteceu com um cliente que falava sobre ${t}.
-O problema era a falta de ${d.foco}.
-Fomos lá, aplicamos o framework ${d.frameworks[0]} e em 90 dias a previsibilidade saltou.
-No B2B, sem método, você está apenas contando com a sorte.
-💬 Comenta ${k} que eu te mando os detalhes dessa jornada.`
-        ],
-        lista: [
-            (d, t, k) => `Pare de cometer esses 5 erros em ${t}:
+Fomos lá, aplicamos o framework ${d.frameworks[0]} e em 90 dias a previsibilidade saltou. No B2B, sem método, você está apenas contando com a sorte.
+
+Como está o seu nível de ${d.foco} hoje?
+
+💬 Comenta ${k} que eu te mando os detalhes dessa jornada.`,
+                (d, t, k) => `Eu cansei de ver empresas brasileiras ignorando o básico de ${t}.
+
+Semana passada, conversando com um CEO, percebi que o gap não era o produto, mas a ${d.foco}.
+
+O segredo da Sales Rocket é justamente o ${d.frameworks[1]}. Quando você alinha isso, o jogo muda.
+
+Quer parar de apagar incêndios em ${t}?
+
+💬 Comenta ${k} para conversarmos.`
+            ],
+            lista: [
+                (d, t, k) => `Pare de cometer esses 5 erros em ${t}:
+
 1. Não ter um GTM claro
 2. Ignorar a ${d.foco} no dia a dia
 3. CRM sem dados confiáveis
 4. Usar scripts genéricos
 5. Falta de rituais de gestão
+
 Qual desses mais te atrapalha hoje?
-Comenta ${k} para receber o meu checklist completo.`
-        ],
-        'how-to': [
-            (d, t, k) => `Como estruturar ${t} do jeito certo em 3 passos:
+
+Comenta ${k} para receber o meu checklist completo.`,
+                (d, t, k) => `3 pilares inegociáveis para escalar ${t} em 2024:
+
+🚀 Pilar 1: ${d.foco} como cultura.
+📈 Pilar 2: Aplicação do ${d.frameworks[0]}.
+🎯 Pilar 3: Foco total em ROI.
+
+Sem isso, você está apenas queimando caixa.
+
+Quer os detalhes? Comenta ${k}.`
+            ],
+            'how-to': [
+                (d, t, k) => `Como estruturar ${t} do jeito certo em 3 passos:
+
 1. Comece pela ${d.foco} (o fundamento)
 2. Aplique o framework ${d.frameworks[0]} para dar escala
 3. Crie rituais de acompanhamento semanais.
+
 Simples, mas 90% das empresas pulam etapas.
-💬 Comenta ${k} para baixar o guia prático.`
-        ],
-        'antes-depois': [
-            (d, t, k) => `Cenário A: Vendas "na raça" e pipeline vazio em ${t}.
-Cenário B: Receita previsível e time acelerado com ${d.foco}.
-A diferença? O método Sales Rocket aplicado à realidade brasileira.
-Quer sair do Cenário A?
-Comenta ${k} aqui embaixo.`
-        ],
-        decisao: [
-            (d, t, k) => `Uma decisão de C-level que muda tudo em ${t}:
+
+💬 Comenta ${k} para baixar o guia prático.`,
+                (d, t, k) => `O guia definitivo para ${t} sem sofrimento:
+
+Passo A: Audite sua ${d.foco}.
+Passo B: Implemente o ${d.frameworks[1]}.
+Passo C: Treine o time no framework.
+
+A Sales Rocket já fez isso em centenas de empresas B2B.
+
+Quer o PDF? Comenta ${k}.`
+            ],
+            provocacao: [
+                (d, t, k) => `Uma decisão de C-level que muda tudo em ${t}:
+
 Continuar tentando "vender mais" ou parar para arrumar a ${d.foco}.
-Usamos o ${d.frameworks[1]} para tomar essa decisão com base em dados.
-A escala só vem depois do processo.
-Comenta ${k} para ver nosso relatório estratégico.`
-        ],
-        hack: [
-            (d, t, k) => `O hack de 30 segundos que estamos usando na Sales Rocket para ${t}:
+
+Usamos o ${d.frameworks[1]} para tomar essa decisão com base em dados. A escala só vem depois do processo.
+
+Comenta ${k} para ver nosso relatório estratégico.`,
+                (d, t, k) => `Sua empresa é refém do "vendedor estrela" em ${t}?
+
+Se a sua ${d.foco} depende de uma só pessoa, você não tem um negócio, tem uma bomba-relógio.
+
+Escalabilidade exige o framework ${d.frameworks[0]}.
+
+Pronto para profissionalizar? Comenta ${k}.`
+            ],
+            insight: [
+                (d, t, k) => `O hack de 30 segundos que estamos usando na Sales Rocket para ${t}:
+
 Em vez de focar no produto, foque na dor de ${d.foco}.
-Use o framework ${d.frameworks[0]} na sua próxima call.
-Quer o script exato?
-Comenta ${k} agora.`
-        ]
-    };
 
-    document.getElementById('gerarBtn').onclick = () => {
-        const p = document.getElementById('perfil').value;
-        const type = document.getElementById('tipo').value;
-        const tema = document.getElementById('tema').value || 'Vendas B2B de Alta Performance';
-        const key = document.getElementById('cta').value;
+Use o framework ${d.frameworks[0]} na sua próxima call e veja a conversão mudar.
 
-        const data = perfilData[p];
-        const content = templates[type][0](data, tema, key);
-        
-        document.getElementById('postOutput').firstChild.textContent = content;
-        document.getElementById('promptOutput').firstChild.textContent = "Minimalist B2B sales office, 3D render style, Sales Rocket colors (navy and orange), dramatic lighting, focus on growth chart --ar 16:9";
-    };
+Quer o script exato? Comenta ${k} agora.`,
+                (d, t, k) => `Dica rápida para ${t}: O algoritmo do LinkedIn prioriza conexão real.
 
-    function setupCopy(btnId, outId) {
-        document.getElementById(btnId).onclick = () => {
-            const text = document.getElementById(outId).firstChild.textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                const b = document.getElementById(btnId);
-                b.textContent = 'Copiado!';
-                setTimeout(() => b.textContent = 'Copiar', 2000);
-            });
+Fale de ${d.foco} com autoridade, mas sem "juridiquês" corporativo.
+
+O framework ${d.frameworks[1]} ajuda nisso.
+
+Quer saber como? Comenta ${k}.`
+            ]
         };
-    }
-    setupCopy('copyPost', 'postOutput');
-    setupCopy('copyPrompt', 'promptOutput');
-</script>
+
+        const prompts = [
+            "Minimalist B2B sales office, 3D render style, Sales Rocket colors (navy and orange), dramatic lighting, focus on growth chart --ar 16:9",
+            "Professional C-level meeting room, cinematic lighting, orange accents, minimalist aesthetic, focus on data dashboard --ar 16:9",
+            "Abstract representation of sales pipeline growth, glowing orange lines on dark background, high-tech B2B feel, 8k resolution --ar 16:9",
+            "Modern Brazilian office environment, tech startup style, Sales Rocket branding, natural light, minimalist workspace --ar 16:9"
+        ];
+
+        document.getElementById('gerarBtn').onclick = () => {
+            const p = document.getElementById('perfil').value;
+            const type = document.getElementById('tipo').value;
+            const tema = document.getElementById('tema').value || 'Vendas B2B de Alta Performance';
+            const key = document.getElementById('cta').value;
+            
+            const data = perfilData[p];
+            const variations = templates[type];
+            
+            // Randomly select template for variety
+            const randomVar = variations[Math.floor(Math.random() * variations.length)];
+            const content = randomVar(data, tema, key);
+            
+            // Randomly select prompt
+            const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+
+            // Clear and update content (preserving copy button)
+            const postBox = document.getElementById('postOutput');
+            const promptBox = document.getElementById('promptOutput');
+            
+            // Update text nodes carefully
+            updateBox(postBox, content);
+            updateBox(promptBox, randomPrompt);
+        };
+
+        function updateBox(box, text) {
+            const btn = box.querySelector('.copy-btn');
+            box.innerText = text + '
+
+';
+            box.appendChild(btn);
+        }
+
+        function setupCopy(btnId, outId) {
+            document.getElementById(btnId).onclick = (e) => {
+                e.stopPropagation();
+                const box = document.getElementById(outId);
+                const btn = document.getElementById(btnId);
+                const text = box.innerText.replace('Copiar', '').trim();
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Copiado!';
+                    btn.style.background = '#4CAF50';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.background = 'var(--border)';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Erro ao copiar: ', err);
+                });
+            };
+        }
+
+        setupCopy('copyPost', 'postOutput');
+        setupCopy('copyPrompt', 'promptOutput');
+    </script>
 </body>
 </html>
