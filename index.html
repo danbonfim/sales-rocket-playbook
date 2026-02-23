@@ -212,12 +212,12 @@
     <div class="container">
         <header>
             <div class="logo">🚀 Sales <span>Rocket</span></div>
-            <div class="badge">Ultra Playbook v3.0 (Neuromarketing)</div>
+            <div class="badge">Ultra Playbook v3.5 (Neuro-Viral)</div>
         </header>
 
         <div class="nav-tabs">
             <div class="nav-tab active" onclick="showSection('playbook')">Ultra Playbook</div>
-            <div class="nav-tab" onclick="showSection('generator')">Content Generator AI</div>
+            <div class="nav-tab" onclick="showSection('generator')">Neuromarketing AI</div>
         </div>
 
         <div id="playbook" class="section-content active">
@@ -249,39 +249,39 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Framework de Impacto</label>
+                        <label>Framework de Neuromarketing</label>
                         <select id="tipo">
-                            <option value="neuro-storytelling">Neuro-Storytelling (Oxitocina)</option>
-                            <option value="pain-agitation">Pain-Agitation-Solution (Cortisol)</option>
-                            <option value="fomo-loop">FOMO Loop (Dopamina)</option>
-                            <option value="c-level-provocation">Provocação Cirúrgica (Status)</option>
-                            <option value="authority-hack">Authority Hack (Confiança)</option>
+                            <option value="neuro-viral">Neuro-Viral (Foco no Córtex + Reptiliano)</option>
+                            <option value="deep-storytelling">Deep Storytelling (Liberação de Oxitocina)</option>
+                            <option value="high-fomo">FOMO Extremo (Gatilho de Urgência Primitiva)</option>
+                            <option value="surgical-agitation">Agitação Cirúrgica (Pain-Agitation-Solution)</option>
+                            <option value="c-level-rebel">Provocação Rebelde (Status & Autoridade)</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Tema Principal</label>
-                        <input type="text" id="tema" placeholder="Ex: Por que seu GTM está sangrando...">
+                        <label>Tema Específico</label>
+                        <input type="text" id="tema" placeholder="Ex: O fim do outbound tradicional...">
                     </div>
                     <div class="form-group">
-                        <label>Keyword CTA (Lead Magnet)</label>
+                        <label>Keyword CTA</label>
                         <select id="cta">
-                            <option value="CASE">CASE (Prova Social Irrefutável)</option>
-                            <option value="PROCESSO">PROCESSO (A Chave da Operação)</option>
-                            <option value="MÉTODO">MÉTODO (A Ciência por Trás)</option>
-                            <option value="GTM">GTM (O Plano Mestre)</option>
+                            <option value="CASE">CASE (Prova Social Brutal)</option>
+                            <option value="PROCESSO">PROCESSO (Ouro Operacional)</option>
+                            <option value="MÉTODO">MÉTODO (A Ciência Rocket)</option>
+                            <option value="CONVERSA">CONVERSA (Acesso Direto)</option>
                         </select>
                     </div>
-                    <button class="btn" id="gerarBtn">Ativar Gatilhos Mentais 🚀</button>
+                    <button class="btn" id="gerarBtn">Gerar Post de Alto Impacto 🚀</button>
                 </div>
 
                 <div class="output-area">
                     <div>
-                        <div class="neuro-label">ALGORITMO LINKEDIN + NEUROCIÊNCIA</div>
-                        <div class="output-box" id="postOutput">Seu próximo post viral está a um clique de distância...<button class="copy-btn" id="copyPost">Copiar</button></div>
+                        <div class="neuro-label">CONTEÚDO ESTRUTURADO PARA VIRALIZAÇÃO</div>
+                        <div class="output-box" id="postOutput">Aguardando gatilho...<button class="copy-btn" id="copyPost">Copiar</button></div>
                     </div>
                     <div>
                         <div class="neuro-label">IMAGE PROMPT (NANO BANANA)</div>
-                        <div class="output-box" id="promptOutput" style="min-height: 100px;">Aguardando ativação...<button class="copy-btn" id="copyPrompt">Copiar</button></div>
+                        <div class="output-box" id="promptOutput" style="min-height: 100px;">Prompt visual virá aqui.<button class="copy-btn" id="copyPrompt">Copiar</button></div>
                     </div>
                 </div>
             </div>
@@ -299,216 +299,197 @@
         }
 
         const perfilData = {
-            gabriel: { 
-                foco: 'arquitetura de receita e GTM', 
-                frameworks: ['MEDDIC', 'Estratégia C-Level'],
-                perfil: 'O Estrategista'
-            },
-            enrico: { 
-                foco: 'eficiência operacional e CRM', 
-                frameworks: ['Pipeline Velocity', 'Operação Sales Rocket'],
-                perfil: 'O Operador'
-            },
-            thiago: { 
-                foco: 'geração de demanda e escala', 
-                frameworks: ['Outbound 2.0', 'Social Selling'],
-                perfil: 'O Growth Hacker'
-            }
+            gabriel: { foco: 'arquitetura de receita', f: 'MEDDIC', p: 'Estrategista' },
+            enrico: { foco: 'eficiência operacional', f: 'Pipeline Velocity', p: 'Operador' },
+            thiago: { foco: 'geração de demanda', f: 'Outbound 2.0', p: 'Growth' }
         };
 
         const templates = {
-            'neuro-storytelling': [
-                (d, t, k) => `Eu vi o momento exato em que o CEO de uma das maiores empresas B2B do Brasil percebeu que estava perdendo R$ 10 milhões por ano. 💸\
+            'neuro-viral': [
+                (d, t, k) => `O erro de R$ 1.000.000 que você está cometendo em ${t} sem perceber. 📉\
 \
-Não foi uma planilha que mostrou isso. Foi uma falha invisível em ${t}.\
+Eu acabei de sair de uma call com um board de uma multinacional e o padrão se repetiu: eles têm o melhor produto, mas a ${d.foco} é de amadores.\
 \
-Muitos acreditam que escala é sobre \\"mais vendedores\\\". \
-A neurociência do B2B diz o contrário. Escala é sobre segurança e método.\
+O cérebro humano é programado para evitar o perigo. E no B2B, o maior perigo é a incerteza. \
 \
-Quando aplicamos o framework ${d.frameworks[0]}, o cérebro reptiliano do comprador parou de ver perigo e começou a ver oportunidade. \
+Se o seu comercial não utiliza o framework ${d.f}, você está passando insegurança para o seu prospect. E insegurança não fecha contrato.\
 \
-O resultado? \
-300% de aumento em Pipeline Velocity em 4 meses.\
+Na Sales Rocket, nós não apenas "ajudamos a vender". Nós hackeamos o processo de decisão do comprador.\
 \
-Na Sales Rocket, não fazemos apenas consultoria. Nós reconstruímos a ${d.foco}.\
+O que fizemos:\
+1. Isolamos o ruído em ${t}.\
+2. Injetamos o método ${d.f}.\
+3. Alinhamos a ${d.foco} ao comportamento humano.\
 \
-Você está jogando xadrez ou damas com o seu mercado?\
+O resultado não foi apenas "bater meta". Foi dominância de mercado.\
 \
-💬 Comenta ${k} para ter acesso à gravação onde explico esse processo passo a passo.`,
-                (d, t, k) => `O silêncio do pipeline vazio é o som mais caro de uma empresa B2B. 🔇\
+Você vai continuar deixando dinheiro na mesa ou vai profissionalizar o jogo?\
 \
-Eu vivi isso na pele antes de fundar a Sales Rocket. Tentamos de tudo em ${t}, mas nada funcionava. Por que?\
+💬 Comenta ${k} e eu te mostro os bastidores dessa arquitetura de receita.`,
+                (d, t, k) => `Por que o seu GTM em ${t} é um castelo de cartas pronto para cair? 🃏\
 \
-Porque estávamos falando com o córtex (lógica), enquanto a decisão de compra acontece no sistema límbico (emoção e confiança).\
+A maioria dos líderes comerciais ignora a neurociência por trás da compra B2B. Eles acham que é sobre "características e benefícios". \
 \
-O segredo não era o script. Era a ${d.foco}.\
+Spoiler: Não é. É sobre ALÍVIO DE DOR.\
 \
-Implementamos o método ${d.frameworks[1]} e as reuniões que antes eram \\\"não\\\" viraram \\\"como começamos?\\\".\
+Se sua ${d.foco} não foca em aliviar a dor do decisor nos primeiros 30 segundos, você já perdeu.\
 \
-A pergunta não é se você tem um processo, mas se o seu processo sobrevive ao algoritmo do LinkedIn e ao cérebro do seu prospect.\
+Nós na Sales Rocket reconstruímos operações inteiras baseadas no framework ${d.f}. Sabe por quê? Porque ele fala diretamente com o córtex pré-frontal, eliminando a barreira da desconfiança.\
 \
-Pronto para a cirurgia no seu comercial?\
+O mercado brasileiro saturou de amadores em ${t}. Só os cirúrgicos sobrevivem.\
 \
-🚀 Comenta ${k} e eu te mando o blueprint dessa transformação.`
+Sua empresa é um predador ou uma presa?\
+\
+🚀 Comenta ${k} para receber o blueprint que estamos usando para escalar empresas de tecnologia este semestre.`
             ],
-            'pain-agitation': [
-                (d, t, k) => `Sua operação de ${t} está sangrando e você está tentando curar com um band-aid. 🩸\
+            'deep-storytelling': [
+                (d, t, k) => `O silêncio do pipeline vazio é o som que tira o sono de qualquer fundador. 🔇\
 \
-A verdade dói: se o seu time não bate meta há 3 meses, o problema não é o mercado. É a sua ${d.foco}.\
+Há 6 meses, um cliente nos procurou desesperado. Ele dominava ${t}, mas as vendas tinham estagnado. O time estava desmotivado e o CAC tinha dobrado.\
 \
-A cada dia que você ignora a falta de ${d.frameworks[0]}, sua concorrência ganha terreno. O FOMO aqui é real: enquanto você hesita, eles estão fechando os seus clientes.\
+Ele achava que precisava de mais leads. Eu mostrei que ele precisava de mais MÉTODO.\
 \
-Na Sales Rocket, vemos isso todos os dias. Empresas com produtos incríveis morrendo por falta de processo.\
+Não era sobre volume. Era sobre a oxitocina da confiança que faltava na ${d.foco}.\
 \
-Não espere o caixa secar para decidir mudar.\
+Implementamos o ${d.f} e, em vez de empurrar produtos, começamos a resolver problemas reais. \
 \
-O framework ${d.frameworks[1]} é a cura.\
+A mudança foi brutal. Reuniões de 1 hora viraram fechamentos em 20 minutos. \
 \
-💬 Comenta ${k} para receber o diagnóstico que salvou nossos últimos 5 clientes.`,
-                (d, t, k) => `Por que 90% dos SDRs brasileiros falham em ${t}? ❌\
+Hoje, esse mesmo cliente cresce 40% ao mês com a estrutura da Sales Rocket.\
 \
-Simples: eles não vendem solução. Eles vendem \\\"uma rapidinha de 15 minutos\\\".\
+A história da sua empresa vai ser de estagnação ou de escala imparável?\
 \
-Isso causa repulsa imediata. O cérebro do seu prospect está programado para ignorar ruído. E sua ${d.foco} atual é ruído.\
+💬 Comenta ${k} se você quer escrever o próximo capítulo de sucesso em ${t}.`,
+                (d, t, k) => `Eu lembro do dia em que quase desisti de ${t}. 🌑\
 \
-Se você não injetar ${d.frameworks[0]} agora, seu custo de aquisição (CAC) vai continuar subindo até ficar insustentável.\
+O mercado estava mudando, o LinkedIn não entregava mais e as calls de outbound estavam frias. \
 \
-Quer parar de queimar leads?\
+Foi quando percebi que o problema não era o canal, mas a ${d.foco}. Eu estava tentando vender como se estivéssemos em 2015.\
 \
-Nós na Sales Rocket dominamos a arte de transformar ruído em sinal.\
+O cérebro do comprador evoluiu. Ele detecta "vendedor genérico" a quilômetros de distância.\
 \
-💬 Comenta ${k} e veja como invertemos esse jogo.`
+Tudo mudou quando desenvolvi o método ${d.f} na Sales Rocket. Paramos de pedir permissão para vender e passamos a ditar o ritmo do mercado.\
+\
+Se você sente que está correndo em uma esteira em ${t}, pare tudo.\
+\
+Existe um caminho mais curto para o topo.\
+\
+🚀 Comenta ${k} e eu te envio o guia secreto de Neuromarketing para Vendas B2B.`
             ],
-            'fomo-loop': [
-                (d, t, k) => `O que empresas como a Sales Rocket sabem sobre ${t} que você ainda não descobriu? 🤔\
+            'high-fomo': [
+                (d, t, k) => `O que as empresas do "Top 1%" sabem sobre ${t} que você ainda não sabe? 🤫\
 \
-Existe um grupo seleto de empresas B2B crescendo 2 dígitos por mês, mesmo em cenários incertos. O segredo? Elas abandonaram o amadorismo em ${d.foco}.\
+Existe um grupo de elite de empresas brasileiras que estão monopolizando os melhores leads. Enquanto você briga por migalhas em ${t}, elas estão fechando contratos anuais com 7 dígitos.\
 \
-Elas utilizam o framework ${d.frameworks[0]} para dominar o mercado.\
+A diferença? Elas usam a ${d.foco} da Sales Rocket.\
 \
-Enquanto você lê este post, alguém está usando o nosso ${d.frameworks[1]} para agendar uma reunião com o seu ICP. \
+Elas não esperam o mercado reagir. Elas forçam a demanda usando o framework ${d.f}.\
 \
-O mercado B2B brasileiro não perdoa quem fica para trás.\
+Estamos abrindo a caixa preta da nossa operação para apenas 5 novas consultorias este mês. Uma dessas vagas pode ser sua, ou do seu maior concorrente.\
 \
-Você quer ser quem dita o jogo ou quem assiste?\
+O tempo de "tentar" acabou. Agora é tempo de DOMINAR.\
 \
-💬 Comenta ${k} para entrar no loop de alta performance.`,
-                (d, t, k) => `A janela de oportunidade em ${t} está fechando. ⏳\
+Você vai assistir de fora ou vai entrar no jogo dos grandes?\
 \
-O que funcionava em 2023 hoje é lixo digital. O algoritmo mudou. O comprador mudou. A Sales Rocket mudou.\
+💬 Comenta ${k} agora para garantir seu diagnóstico de GTM.`,
+                (d, t, k) => `O algoritmo do LinkedIn acaba de priorizar quem domina a ${d.foco}. ⚡\
 \
-Quem não domina a ${d.foco} está fadado à irrelevância.\
+O alcance orgânico está caindo para quem posta "mais do mesmo" em ${t}. \
 \
-Estamos liberando o framework ${d.frameworks[1]} para apenas 10 empresas este mês.\
+Na Sales Rocket, descobrimos o hack de viralização baseado em Gatilhos de Escassez e Status. \
 \
-Os resultados? Previsibilidade total e fechamentos 40% mais rápidos.\
+Quem implementou o framework ${d.f} nas últimas 2 semanas viu um aumento de 5x no engajamento e 3x mais reuniões agendadas.\
 \
-Não deixe para amanhã a eficiência que sua empresa precisa hoje.\
+A janela de oportunidade para dominar ${t} este ano está se fechando rápido.\
 \
-🚀 Comenta ${k} para garantir sua vaga na consultoria estratégica.`
+Vai ficar com a teoria ou com os resultados?\
+\
+🚀 Comenta ${k} para receber o acesso exclusivo ao nosso Ultra Playbook.`
             ],
-            'c-level-provocation': [
-                (d, t, k) => `C-Level: Sua planilha de vendas mente para você. 📊\
+            'surgical-agitation': [
+                (d, t, k) => `Por que sua equipe de vendas odeia o seu CRM (e como isso está matando seus lucros em ${t}). 🤮\
 \
-Se você olha para o seu pipeline de ${t} e vê \\\"oportunidades\\\", mas o fechamento não vem, você tem um problema de ${d.foco}.\
+Seu CRM é um cemitério de dados? Se sim, sua ${d.foco} é inexistente.\
 \
-A maioria dos gestores foca no volume. Nós focamos em ${d.frameworks[0]}.\
+Vendedores sem método são apenas pessoas caras ocupando espaço. Sem o framework ${d.f}, o seu pipeline é uma mentira confortante.\
 \
-Eficiência comercial não é sobre suor, é sobre inteligência e neurociência aplicada ao fechamento.\
+A dor de não ter previsibilidade em ${t} é o que quebra empresas B2B promissoras.\
 \
-Na Sales Rocket, desafiamos o status quo da consultoria tradicional. Nós entregamos arquitetura de receita pura.\
+A Sales Rocket resolve isso na raiz. Nós não damos dicas, nós implantamos rituais de alta performance.\
 \
-Sua empresa é escalável ou depende de milagres?\
+Agite o seu comercial antes que o mercado agite você.\
 \
-💬 Comenta ${k} para receber nossa análise comparativa de GTM B2B.`,
-                (d, t, k) => `O maior erro estratégico de um CEO em 2024: Delegar a ${d.foco} para quem não entende de método. ⚠️\
+💬 Comenta ${k} para ver como transformamos CRMs mortos em máquinas de receita.`,
+                (d, t, k) => `Parem de contratar SDRs para fazer spam em ${t}! 🛑\
 \
-Vendas B2B em ${t} é uma ciência. Se não há framework, não há previsibilidade.\
+Isso é um crime contra a sua marca. \
 \
-O uso do ${d.frameworks[1]} separa os unicórnios das empresas que apenas sobrevivem.\
+Cada mensagem genérica enviada sem a ${d.foco} correta é um prospect que você queima para sempre.\
 \
-Você está liderando uma força de vendas ou um grupo de entusiastas?\
+O custo de oportunidade de um outbound mal feito é incalculável. \
 \
-A Sales Rocket profissionaliza o seu jogo comercial em níveis que você ainda não viu.\
+Você precisa do framework ${d.f} para ontem. \
 \
-💬 Comenta ${k} para conversarmos sobre o seu GTM.`
+Na Sales Rocket, ensinamos o seu time a ser cirúrgico. Menos volume, muito mais conversão.\
+\
+Pronto para parar de passar vergonha no LinkedIn do seu prospect?\
+\
+🚀 Comenta ${k} e receba nosso treinamento de abordagem de alto impacto.`
             ],
-            'authority-hack': [
-                (d, t, k) => `Como nos tornamos autoridade em ${t} sem gastar R$ 1 em anúncios. 🚀\
+            'c-level-rebel': [
+                (d, t, k) => `O conselho de "especialista" em ${t} que está levando sua empresa ao abismo. ⚠️\
 \
-O segredo está no Neuromarketing aplicado ao LinkedIn. \
+Muitos dizem que você precisa de "conteúdo de valor". Eu digo que você precisa de POSICIONAMENTO DE PODER.\
 \
-Não postamos conteúdo. Injetamos autoridade através da ${d.foco}.\
+No B2B, o C-level não quer um fornecedor. Ele quer um aliado estratégico que domine a ${d.foco}.\
 \
-Utilizamos o framework ${d.frameworks[0]} para criar uma percepção de valor inabalável. \
+Se você se comporta como um pedinte em ${t}, nunca terá o status necessário para fechar grandes contas.\
 \
-Agora, estamos trazendo essa mesma inteligência da Sales Rocket para o seu negócio.\
+Nós na Sales Rocket treinamos líderes para dominarem o framework ${d.f} e reverterem a lógica da prospecção: o cliente passa a buscar você.\
 \
-Quer que o seu mercado te veja como a única solução possível?\
+Desafie o óbvio. Rompa com o mediano.\
 \
-O método ${d.frameworks[1]} é o caminho.\
-\
-💬 Comenta ${k} para baixar o nosso guia de Autoridade B2B.`,
-                (d, t, k) => `A prova de que o método Sales Rocket funciona em ${t}: 📈\
-\
-Não são palavras. São dados. \
-Implementamos a ${d.foco} em mais de 300 empresas.\
-\
-O denominador comum? O uso sistemático do framework ${d.frameworks[0]}.\
-\
-A autoridade não se pede, se constrói com processos claros e resultados consistentes.\
-\
-Se você busca o próximo nível em ${t}, você encontrou a fonte.\
-\
-💬 Comenta ${k} para ver nossos estudos de caso reais.`\
+💬 Comenta ${k} para conversarmos sobre como elevar o seu Status de Autoridade no mercado.`
             ]
         };
 
         const prompts = [
-            \\\"Hyper-realistic B2B office scene, dramatic cinematic lighting, deep navy and Sales Rocket orange accents, focus on a high-stakes meeting, 8k resolution, shot on 35mm lens --ar 16:9\\\",
-            \\\"Conceptual 3D render: A rocket ship made of data streams launching from a dark marble floor, orange fire, navy background, futuristic B2B aesthetic, minimalist and powerful --ar 16:9\\\",
-            \\\"Abstract neuro-connection map in Sales Rocket colors (orange/navy), glowing nodes representing sales pipeline growth, high-tech, cinematic atmosphere --ar 16:9\\\",
-            \\\"C-level executive looking out a high-rise window at a Brazilian skyline, sunset lighting, reflection in glass showing Sales Rocket logo, professional and ambitious --ar 16:9\\\"
+            "Ultra-realistic cinematic shot, B2B negotiation room, dark moody lighting with intense orange accents, Sales Rocket aesthetic, high-end corporate photography, 8k --ar 16:9",
+            "Conceptual 3D art: A human brain connected by orange fiber-optic cables to a rocket engine, navy blue background, high-tech, represent neuro-sales, 8k render --ar 16:9",
+            "Dramatic low-angle shot of a Brazilian business executive walking towards a glowing orange portal, minimalist high-tech office, cinematic lighting, Sales Rocket branding --ar 16:9",
+            "Macro shot of a growth graph rendered in liquid orange metal on a black marble surface, professional, powerful, sleek B2B style --ar 16:9"
         ];
 
         document.getElementById('gerarBtn').onclick = () => {
             const p = document.getElementById('perfil').value;
             const type = document.getElementById('tipo').value;
-            const tema = document.getElementById('tema').value || 'Arquitetura de Receita B2B';
+            const tema = document.getElementById('tema').value || 'Arquitetura Comercial B2B';
             const key = document.getElementById('cta').value;
             
             const data = perfilData[p];
-            const variations = templates[type];
-            
-            const randomVar = variations[Math.floor(Math.random() * variations.length)];
-            const content = randomVar(data, tema, key);
-            const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+            const vars = templates[type];
+            const content = vars[Math.floor(Math.random() * vars.length)](data, tema, key);
+            const prompt = prompts[Math.floor(Math.random() * prompts.length)];
 
-            document.getElementById('postOutput').innerHTML = content + '<button class=\\\"copy-btn\\\" id=\\\"copyPost\\\">Copiar</button>';
-            document.getElementById('promptOutput').innerHTML = randomPrompt + '<button class=\\\"copy-btn\\\" id=\\\"copyPrompt\\\">Copiar</button>';
+            document.getElementById('postOutput').innerHTML = content + '<button class="copy-btn" id="copyPost">COPIAR POST</button>';
+            document.getElementById('promptOutput').innerHTML = prompt + '<button class="copy-btn" id="copyPrompt">COPIAR PROMPT</button>';
             
             setupCopy('copyPost', 'postOutput');
             setupCopy('copyPrompt', 'promptOutput');
         };
 
         function setupCopy(btnId, outId) {
-            document.getElementById(btnId).onclick = (e) => {
-                const box = document.getElementById(outId);
-                const btn = document.getElementById(btnId);
-                const text = box.innerText.replace('COPIAR', '').trim();
-                
+            document.getElementById(btnId).onclick = () => {
+                const text = document.getElementById(outId).innerText.replace('COPIAR POST', '').replace('COPIAR PROMPT', '').trim();
                 navigator.clipboard.writeText(text).then(() => {
-                    const originalText = btn.textContent;
+                    const btn = document.getElementById(btnId);
+                    const old = btn.textContent;
                     btn.textContent = 'COPIADO!';
                     btn.style.background = '#4CAF50';
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.background = 'var(--border)';
-                    }, 2000);
+                    setTimeout(() => { btn.textContent = old; btn.style.background = 'var(--border)'; }, 2000);
                 });
             };
         }
-
         setupCopy('copyPost', 'postOutput');
         setupCopy('copyPrompt', 'promptOutput');
     </script>
