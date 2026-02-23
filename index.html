@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Rocket | Ultra Playbook & Content Generator v4.0</title>
+    <title>Sales Rocket | Ultra Playbook & Content Generator v4.1</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -43,8 +43,8 @@
             gap: 1rem;
         }
 
-        .logo-svg {
-            height: 40px;
+        .logo-img {
+            height: 45px;
             width: auto;
         }
 
@@ -99,9 +99,7 @@
             color: white;
             margin-bottom: 2rem;
             font-family: inherit;
-            transition: border-color 0.2s;
         }
-        select:focus, input:focus { border-color: var(--primary); outline: none; }
 
         button#gerarBtn {
             width: 100%;
@@ -143,6 +141,7 @@
             border-radius: 6px;
             color: white;
             font-weight: 700;
+            cursor: pointer;
         }
 
         .stats {
@@ -154,23 +153,39 @@
             font-weight: 500;
         }
 
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
         .strategy-card {
             background: #0D1117;
             border-top: 2px solid var(--primary);
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
             border-radius: 12px;
+            height: 100%;
+            transition: transform 0.3s;
         }
+        .strategy-card:hover { transform: translateY(-5px); }
         .strategy-card h3 { 
             color: var(--primary); 
-            font-size: 1.1rem; 
-            margin-bottom: 1rem;
+            font-size: 1rem; 
+            margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-weight: 700;
+        }
+        .strategy-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
-        @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1100px) { .benefit-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 700px) { .benefit-grid { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -178,16 +193,14 @@
 <div class="container">
     <header>
         <div class="logo-container">
-            <svg class="logo-svg" viewBox="0 0 400 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Circular Rocket Icon -->
-                <circle cx="30" cy="30" r="28" stroke="white" stroke-width="3" fill="none"/>
-                <path d="M42 18C42 18 35 15 30 15C25 15 18 18 18 18C18 18 20 30 30 45C40 30 42 18 42 18Z" fill="#00B4FF"/>
-                <path d="M30 45V15" stroke="white" stroke-width="2"/>
-                <!-- SALES ROCKET Text -->
-                <text x="70" y="45" font-family="Inter" font-weight="900" font-size="38" fill="#00B4FF">SALES ROCKET</text>
+            <svg class="logo-img" viewBox="0 0 1024 152" xmlns="http://www.w3.org/2000/svg">
+                <path d="M102.4 20.3C102.4 20.3 85.3 13 73.1 13C60.9 13 43.8 20.3 43.8 20.3C43.8 20.3 48.7 49.6 73.1 86.2C97.5 49.6 102.4 20.3 102.4 20.3Z" fill="#00B4FF"/>
+                <circle cx="73.1" cy="40.6" r="12" fill="white"/>
+                <path d="M54.1 38.6C47.2 46.5 41.5 56.4 37.8 67.5C34.1 78.6 32.2 90.5 32.2 102.5C32.2 114.5 34.1 126.4 37.8 137.5L54.1 121.2C50.4 115.1 48.5 108.9 48.5 102.5C48.5 96.1 50.4 89.9 54.1 83.8L54.1 38.6Z" fill="#00B4FF"/>
+                <text x="170" y="115" font-family="Inter" font-weight="900" font-size="110" fill="#00B4FF">SALES ROCKET</text>
             </svg>
         </div>
-        <div class="badge">B2B Content Engine v4.0</div>
+                    <img src="https://drive.google.com/uc?export=view&id=1500WVvVXfU5Fbvpo_i3Z3_5gXz3YpIDs" alt="Sales Rocket" style="height:45px;width:auto;object-fit:contain;">
     </header>
 
     <div class="hero">
@@ -233,7 +246,7 @@
             </div>
 
             <div class="card" style="padding: 1.5rem;">
-                <h2>🖼️ Prompt Midjourney</h2>
+                <h2>🖼️ Midjourney Prompt</h2>
                 <div class="output-box" id="promptOutput" style="min-height: 80px; padding: 1rem; font-size: 0.85rem;">
                     Prompt aparecerá aqui...
                 </div>
@@ -253,11 +266,11 @@
         </div>
     </div>
 
-    <div class="hero" style="margin-top: 6rem; margin-bottom: 3rem;">
+    <div class="hero" style="margin-top: 6rem; margin-bottom: 1rem;">
         <h1>Por que usar nossa <span>ferramenta?</span></h1>
     </div>
 
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="benefit-grid">
         <div class="strategy-card">
             <h3>🔹 Variação Sintática</h3>
             <p>Algoritmo do LinkedIn privilegia originalidade. Nossa ferramenta garante que nenhum post seja igual ao outro através de rotação de componentes.</p>
@@ -265,6 +278,22 @@
         <div class="strategy-card">
             <h3>🔹 Autoridade Multi-Perfil</h3>
             <p>Adapte o tom de voz instantaneamente para diferentes especialistas, mantendo a unidade da marca Sales Rocket.</p>
+        </div>
+        <div class="strategy-card">
+            <h3>🔹 Foco em Conversão</h3>
+            <p>Frameworks baseados em ganchos de alta retenção (Dwell Time) e CTAs irresistíveis para gerar reuniões qualificadas.</p>
+        </div>
+        <div class="strategy-card">
+            <h3>🔹 Eficiência Operacional</h3>
+            <p>Reduza o tempo de criação de 45 minutos para 45 segundos, mantendo a profundidade técnica do GTM brasileiro.</p>
+        </div>
+        <div class="strategy-card">
+            <h3>🔹 Midjourney Integration</h3>
+            <p>Sugestões de prompts visuais que aumentam o CTR do post, alinhados com a estética premium do mercado B2B.</p>
+        </div>
+        <div class="strategy-card">
+            <h3>🔹 Arquitetura de Receita</h3>
+            <p>Todo o conteúdo é filtrado pela metodologia da Traction X, focando no que realmente move o ponteiro do pipeline.</p>
         </div>
     </div>
 </div>
@@ -292,36 +321,36 @@
             (p, pr, t) => `O mercado brasileiro de B2B mudou, e sua estratégia de ${t} ficou em 2022. ⚡`
         ],
         bodies: [
-            (p, pr, t) => `Na ${pr.nome}, nós não acreditamos em "sorte". Acreditamos em ${p.foco}. Para ter ${pr.promessa}, você precisa de rituais inegociáveis.`,
+            (p, pr, t) => `Na ${pr.nome}, nós não acreditamos em \\\"sorte\\\". Acreditamos em ${p.foco}. Para ter ${pr.promessa}, você precisa de rituais inegociáveis.`,
             (p, pr, t) => `O erro nº 1 é tentar escalar o caos. Sem uma ${pr.entrega} bem definida, você só está queimando leads em ${t}.`,
             (p, pr, t) => `Imagine ter um processo onde cada ação de ${t} gera um dado acionável. É isso que entregamos com foco em ${p.voz}.`,
             (p, pr, t) => `No dia a dia da ${pr.nome}, vemos que a diferença entre o topo e a média é a execução da ${pr.entrega}.`
         ],
         lists: [
-            (p, pr, t) => `O que mudamos agora:
-✅ Framework de ${t} adaptado
-✅ Ritos de Passagem claros
+            (p, pr, t) => `O que mudamos agora:\
+✅ Framework de ${t} adaptado\
+✅ Ritos de Passagem claros\
 ✅ Setup de ferramentas na nuvem`,
-            (p, pr, t) => `Os 3 pilares da nossa entrega:
-1. Estratégia de ${p.foco}
-2. Hunting de precisão
+            (p, pr, t) => `Os 3 pilares da nossa entrega:\
+1. Estratégia de ${p.foco}\
+2. Hunting de precisão\
 3. Automação inteligente`,
-            (p, pr, t) => `Checklist para dominar ${t}:
-🔹 Auditoria de processos
-🔹 Treinamento de Hard Skills
+            (p, pr, t) => `Checklist para dominar ${t}:\
+🔹 Auditoria de processos\
+🔹 Treinamento de Hard Skills\
 🔹 Dashboard em tempo real`
         ],
         ctas: [
-            (p, pr, t, k) => `Quer o nosso playbook completo de ${t}? Comenta "${k}" abaixo e eu te envio.`,
-            (p, pr, t, k) => `Vou liberar 5 diagnósticos de ${t} esta semana. Digite "${k}" para garantir sua vaga.`,
-            (p, pr, t, k) => `Não perca mais tempo. Escreve "${k}" aqui embaixo e vamos profissionalizar sua ${pr.entrega}.`
+            (p, pr, t, k) => `Quer o nosso playbook completo de ${t}? Comenta \\\"${k}\\\" abaixo e eu te envio.`,
+            (p, pr, t, k) => `Vou liberar 5 diagnósticos de ${t} esta semana. Digite \\\"${k}\\\" para garantir sua vaga.`,
+            (p, pr, t, k) => `Não perca mais tempo. Escreve \\\"${k}\\\" aqui embaixo e vamos profissionalizar sua ${pr.entrega}.`
         ]
     };
 
     const prompts = [
-        "Hyper-realistic B2B office scene, cyan lighting accents, cinematic 8k --ar 16:9",
-        "3D render of a rocket launching through digital data streams, cyan and navy --ar 16:9",
-        "Modern corporate leader silhouette, glowing cyan background, minimalist --ar 16:9"
+        \\\"Hyper-realistic B2B office scene, cyan lighting accents, cinematic 8k --ar 16:9\\\",
+        \\\"3D render of a rocket launching through digital data streams, cyan and navy --ar 16:9\\\",
+        \\\"Modern corporate leader silhouette, glowing cyan background, minimalist --ar 16:9\\\"
     ];
 
     document.getElementById('gerarBtn').onclick = () => {
@@ -335,35 +364,35 @@
         const list = componentLib.lists[Math.floor(Math.random() * componentLib.lists.length)](perf, prod, tema);
         const cta = componentLib.ctas[Math.floor(Math.random() * componentLib.ctas.length)](perf, prod, tema, key);
 
-        let content = `${hook}
-
-${body}
-
-${list}
-
-${cta}
-
+        let content = `${hook}\
+\
+${body}\
+\
+${list}\
+\
+${cta}\
+\
 ${perf.hashtag} #B2BSales #Growth #SalesRocket`;
 
         const paddings = [
-            "
-
-PS: A janela de oportunidade no mercado brasileiro está se fechando rápido. Quem tem método escala, quem não tem, assiste.",
-            `
-
+            \\\"\
+\
+PS: A janela de oportunidade no mercado brasileiro está se fechando rápido. Quem tem método escala, quem não tem, assiste.\\\",
+            `\
+\
 A ${prod.nome} é o motor que sua empresa precisa para alcançar a ${prod.promessa} operacional.`,
-            "
-
-O tempo é o único recurso não renovável. Pare de 'tentar' e comece a dominar sua categoria hoje."
+            \\\"\
+\
+O tempo é o único recurso não renovável. Pare de 'tentar' e comece a dominar sua categoria hoje.\\\"
         ];
         
         let i = 0;
         while(content.length < 1400 && i < paddings.length) { content += paddings[i]; i++; }
 
-        document.getElementById('postOutput').innerHTML = content + '<button class="copy-btn" id="copyPost">COPIAR POST</button>';
+        document.getElementById('postOutput').innerHTML = content + '<button class=\\\"copy-btn\\\" id=\\\"copyPost\\\">COPIAR POST</button>';
         
         const prompt = prompts[Math.floor(Math.random() * prompts.length)];
-        document.getElementById('promptOutput').innerHTML = prompt + '<button class="copy-btn" id="copyPrompt" style="top:0.5rem; right:0.5rem; padding:0.4rem 0.8rem;">COPIAR</button>';
+        document.getElementById('promptOutput').innerHTML = prompt + '<button class=\\\"copy-btn\\\" id=\\\"copyPrompt\\\" style=\\\"top:0.5rem; right:0.5rem; padding:0.4rem 0.8rem;\\\">COPIAR</button>';
 
         const count = content.length;
         document.getElementById('charStats').textContent = `Caracteres: ${count} | Tempo de leitura: ~${Math.round(count/20)}s | Status: OTIMIZADO`;
