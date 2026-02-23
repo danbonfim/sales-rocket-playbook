@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Rocket | Ultra Playbook & Content Generator v4.1</title>
+    <title>Sales Rocket | Ultra Playbook & Content Generator v5.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -27,7 +27,7 @@
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        
+
         header {
             display: flex;
             justify-content: space-between;
@@ -60,21 +60,33 @@
         }
 
         .hero { margin-bottom: 4rem; text-align: center; }
-        .hero h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 1.5rem; 
-            letter-spacing: -2px; 
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
             font-weight: 800;
         }
+
         .hero h1 span {
             background: var(--cyan-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .hero p { color: var(--text-muted); font-size: 1.25rem; max-width: 700px; margin: 0 auto; }
 
-        .grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2.5rem; align-items: start; }
-        
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -84,12 +96,30 @@
             position: relative;
             transition: border-color 0.3s;
         }
-        .card:hover { border-color: var(--primary); }
 
-        .card h2 { font-size: 1.25rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 700; }
-        
-        label { display: block; margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        
+        .card:hover {
+            border-color: var(--primary);
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
         select, input {
             width: 100%;
             padding: 1rem;
@@ -115,7 +145,12 @@
             letter-spacing: 1.5px;
             box-shadow: var(--glow);
         }
-        button#gerarBtn:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 0 30px rgba(0, 180, 255, 0.5); }
+
+        button#gerarBtn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 0 30px rgba(0, 180, 255, 0.5);
+        }
 
         .output-box {
             background: #0D1117;
@@ -128,7 +163,7 @@
             min-height: 450px;
             line-height: 1.8;
         }
-        
+
         .copy-btn {
             position: absolute;
             top: 1.5rem;
@@ -168,64 +203,66 @@
             height: 100%;
             transition: transform 0.3s;
         }
+
         .strategy-card:hover { transform: translateY(-5px); }
-        .strategy-card h3 { 
-            color: var(--primary); 
-            font-size: 1rem; 
+
+        .strategy-card h3 {
+            color: var(--primary);
+            font-size: 1rem;
             margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             font-weight: 700;
         }
+
         .strategy-card p {
             font-size: 0.85rem;
             color: var(--text-muted);
             line-height: 1.5;
         }
 
-        @media (max-width: 1100px) { .benefit-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 700px) { .benefit-grid { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1100px) {
+            .benefit-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 700px) {
+            .benefit-grid { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="https://lh3.googleusercontent.com/d/1500WVvVXfU5Fbvpo_i3Z3_5gXz3YpIDs" alt="Sales Rocket Logo" class="logo-img">
+                <span class="badge">v5.0 Ultra</span>
+            </div>
+        </header>
 
-<div class="container">
-    <header>
-        <div class="logo-container">
-            <svg class="logo-img" viewBox="0 0 1024 152" xmlns="http://www.w3.org/2000/svg">
-                <path d="M102.4 20.3C102.4 20.3 85.3 13 73.1 13C60.9 13 43.8 20.3 43.8 20.3C43.8 20.3 48.7 49.6 73.1 86.2C97.5 49.6 102.4 20.3 102.4 20.3Z" fill="#00B4FF"/>
-                <circle cx="73.1" cy="40.6" r="12" fill="white"/>
-                <path d="M54.1 38.6C47.2 46.5 41.5 56.4 37.8 67.5C34.1 78.6 32.2 90.5 32.2 102.5C32.2 114.5 34.1 126.4 37.8 137.5L54.1 121.2C50.4 115.1 48.5 108.9 48.5 102.5C48.5 96.1 50.4 89.9 54.1 83.8L54.1 38.6Z" fill="#00B4FF"/>
-                <text x="170" y="115" font-family="Inter" font-weight="900" font-size="110" fill="#00B4FF">SALES ROCKET</text>
-            </svg>
-        </div>
-                    <img src="https://drive.google.com/uc?export=view&id=1500WVvVXfU5Fbvpo_i3Z3_5gXz3YpIDs" alt="Sales Rocket" style="height:45px;width:auto;object-fit:contain;">
-    </header>
+        <section class="hero">
+            <h1>Engine de <span>Conteúdo Infinito</span></h1>
+            <p>Gere posts de alta conversão para os 4 perfis da Sales Rocket focados em Lead Magnets e Geração de Demanda.</p>
+        </section>
 
-    <div class="hero">
-        <h1>Como <span>funciona?</span></h1>
-        <p>Gere posts de alta conversão em 3 passos simples com o motor ultra-playbook da Sales Rocket.</p>
-    </div>
-
-    <div class="grid">
-        <div class="input-section">
+        <div class="grid">
             <div class="card">
                 <h2>⚙️ Configuração</h2>
                 
                 <label>Perfil de Saída</label>
                 <select id="perfil">
-                    <option value="danilo">Danilo Bonfim (GTM & Strategy)</option>
                     <option value="gabriel">Gabriel (Sales Ops & SDRs)</option>
                     <option value="enrico">Enrico (Talent & Recruitment)</option>
                     <option value="thiago">Thiago (Tech & Automation)</option>
+                    <option value="danilo">Danilo Bonfim (GTM & Strategy)</option>
                 </select>
 
-                <label>Produto / Foco</label>
+                <label>Produto Foco</label>
                 <select id="produto">
-                    <option value="sales-rocket">Sales Rocket (Consultoria/GTM)</option>
-                    <option value="talent-rocket">Talent Rocket (Recrutamento B2B)</option>
-                    <option value="tech-rocket">Tech Rocket (CRM & Stack)</option>
+                    <option value="sales-rocket">Sales Rocket (GTM & Vendas)</option>
+                    <option value="talent-rocket">Talent Rocket (Recrutamento)</option>
+                    <option value="tech-rocket">Tech Rocket (CRM & Tech)</option>
                 </select>
 
                 <label>Tipo de Gancho</label>
@@ -233,185 +270,103 @@
                     <option value="lead-magnet">Lead Magnet (Isca Digital)</option>
                     <option value="pain">Ataque à Dor (Provocação)</option>
                     <option value="case">Storytelling (Case de Sucesso)</option>
-                    <option value="trend">Trend & Algorithm (Hype)</option>
                 </select>
 
                 <label>Tema Central</label>
-                <input type="text" id="tema" placeholder="Ex: Arquitetura de Receita, Outbound...">
+                <input type="text" id="tema" placeholder="Ex: Lead Scoring, Cold Calling...">
 
                 <label>Palavra-chave CTA</label>
-                <input type="text" id="cta" placeholder="Ex: EU QUERO, GUIA, DEMO...">
+                <input type="text" id="cta" placeholder="Ex: EU QUERO, PLAYBOOK, GUIA...">
 
                 <button id="gerarBtn">GERAR CONTEÚDO AGORA</button>
             </div>
 
-            <div class="card" style="padding: 1.5rem;">
-                <h2>🖼️ Midjourney Prompt</h2>
-                <div class="output-box" id="promptOutput" style="min-height: 80px; padding: 1rem; font-size: 0.85rem;">
-                    Prompt aparecerá aqui...
-                </div>
-            </div>
-        </div>
-
-        <div class="output-container">
-            <div class="card">
-                <h2>📝 Post Otimizado</h2>
-                <div class="output-box" id="postOutput">
-                    Configure ao lado e clique em Gerar para ver a mágica...
-                </div>
-                <div class="stats" id="charStats">
-                    Caracteres: 0 | Tempo de leitura: 0s | Status: AGUARDANDO
-                </div>
+            <div class="output-section">
+                <div class="output-box" id="postOutput">Configure ao lado e clique em Gerar para ver a mágica...</div>
+                <div class="stats" id="charStats">Caracteres: 0 | Tempo de leitura: 0s | Status: AGUARDANDO</div>
             </div>
         </div>
     </div>
 
-    <div class="hero" style="margin-top: 6rem; margin-bottom: 1rem;">
-        <h1>Por que usar nossa <span>ferramenta?</span></h1>
-    </div>
-
-    <div class="benefit-grid">
-        <div class="strategy-card">
-            <h3>🔹 Variação Sintática</h3>
-            <p>Algoritmo do LinkedIn privilegia originalidade. Nossa ferramenta garante que nenhum post seja igual ao outro através de rotação de componentes.</p>
-        </div>
-        <div class="strategy-card">
-            <h3>🔹 Autoridade Multi-Perfil</h3>
-            <p>Adapte o tom de voz instantaneamente para diferentes especialistas, mantendo a unidade da marca Sales Rocket.</p>
-        </div>
-        <div class="strategy-card">
-            <h3>🔹 Foco em Conversão</h3>
-            <p>Frameworks baseados em ganchos de alta retenção (Dwell Time) e CTAs irresistíveis para gerar reuniões qualificadas.</p>
-        </div>
-        <div class="strategy-card">
-            <h3>🔹 Eficiência Operacional</h3>
-            <p>Reduza o tempo de criação de 45 minutos para 45 segundos, mantendo a profundidade técnica do GTM brasileiro.</p>
-        </div>
-        <div class="strategy-card">
-            <h3>🔹 Midjourney Integration</h3>
-            <p>Sugestões de prompts visuais que aumentam o CTR do post, alinhados com a estética premium do mercado B2B.</p>
-        </div>
-        <div class="strategy-card">
-            <h3>🔹 Arquitetura de Receita</h3>
-            <p>Todo o conteúdo é filtrado pela metodologia da Traction X, focando no que realmente move o ponteiro do pipeline.</p>
-        </div>
-    </div>
-</div>
-
-<script>
-    const perfilData = {
-        danilo: { autor: "Danilo Bonfim", voz: "Estratégica", foco: "GTM", hashtag: "#GrowthStrategy" },
-        gabriel: { autor: "Gabriel", voz: "Operacional", foco: "SDRs", hashtag: "#SalesOps" },
-        enrico: { autor: "Enrico", voz: "Humana", foco: "Hiring", hashtag: "#TalentAcquisition" },
-        thiago: { autor: "Thiago", voz: "Técnica", foco: "Automação", hashtag: "#SalesTech" }
-    };
-
-    const produtoData = {
-        'sales-rocket': { nome: "Sales Rocket", entrega: "Arquitetura de Receita", promessa: "previsibilidade" },
-        'talent-rocket': { nome: "Talent Rocket", entrega: "Hunting de Talentos", promessa: "performance" },
-        'tech-rocket': { nome: "Tech Rocket", entrega: "Setup de CRM", promessa: "eficiência" }
-    };
-
-    const componentLib = {
-        hooks: [
-            (p, pr, t) => `Eu cansei de ver empresas B2B perdendo dinheiro com ${t}. 📉`,
-            (p, pr, t) => `A verdade brutal sobre ${t} que ninguém te conta no feed. 🤫`,
-            (p, pr, t) => `Se a sua operação de ${t} não bate meta há 3 meses, o problema é estrutural.`,
-            (p, pr, t) => `Como saímos do zero para o domínio total em ${t} usando o método ${pr.nome}. 🚀`,
-            (p, pr, t) => `O mercado brasileiro de B2B mudou, e sua estratégia de ${t} ficou em 2022. ⚡`
-        ],
-        bodies: [
-            (p, pr, t) => `Na ${pr.nome}, nós não acreditamos em \\\"sorte\\\". Acreditamos em ${p.foco}. Para ter ${pr.promessa}, você precisa de rituais inegociáveis.`,
-            (p, pr, t) => `O erro nº 1 é tentar escalar o caos. Sem uma ${pr.entrega} bem definida, você só está queimando leads em ${t}.`,
-            (p, pr, t) => `Imagine ter um processo onde cada ação de ${t} gera um dado acionável. É isso que entregamos com foco em ${p.voz}.`,
-            (p, pr, t) => `No dia a dia da ${pr.nome}, vemos que a diferença entre o topo e a média é a execução da ${pr.entrega}.`
-        ],
-        lists: [
-            (p, pr, t) => `O que mudamos agora:\
-✅ Framework de ${t} adaptado\
-✅ Ritos de Passagem claros\
-✅ Setup de ferramentas na nuvem`,
-            (p, pr, t) => `Os 3 pilares da nossa entrega:\
-1. Estratégia de ${p.foco}\
-2. Hunting de precisão\
-3. Automação inteligente`,
-            (p, pr, t) => `Checklist para dominar ${t}:\
-🔹 Auditoria de processos\
-🔹 Treinamento de Hard Skills\
-🔹 Dashboard em tempo real`
-        ],
-        ctas: [
-            (p, pr, t, k) => `Quer o nosso playbook completo de ${t}? Comenta \\\"${k}\\\" abaixo e eu te envio.`,
-            (p, pr, t, k) => `Vou liberar 5 diagnósticos de ${t} esta semana. Digite \\\"${k}\\\" para garantir sua vaga.`,
-            (p, pr, t, k) => `Não perca mais tempo. Escreve \\\"${k}\\\" aqui embaixo e vamos profissionalizar sua ${pr.entrega}.`
-        ]
-    };
-
-    const prompts = [
-        \\\"Hyper-realistic B2B office scene, cyan lighting accents, cinematic 8k --ar 16:9\\\",
-        \\\"3D render of a rocket launching through digital data streams, cyan and navy --ar 16:9\\\",
-        \\\"Modern corporate leader silhouette, glowing cyan background, minimalist --ar 16:9\\\"
-    ];
-
-    document.getElementById('gerarBtn').onclick = () => {
-        const perf = perfilData[document.getElementById('perfil').value];
-        const prod = produtoData[document.getElementById('produto').value];
-        const tema = document.getElementById('tema').value || 'Arquitetura de Receita';
-        const key = document.getElementById('cta').value || 'EU QUERO';
-        
-        const hook = componentLib.hooks[Math.floor(Math.random() * componentLib.hooks.length)](perf, prod, tema);
-        const body = componentLib.bodies[Math.floor(Math.random() * componentLib.bodies.length)](perf, prod, tema);
-        const list = componentLib.lists[Math.floor(Math.random() * componentLib.lists.length)](perf, prod, tema);
-        const cta = componentLib.ctas[Math.floor(Math.random() * componentLib.ctas.length)](perf, prod, tema, key);
-
-        let content = `${hook}\
-\
-${body}\
-\
-${list}\
-\
-${cta}\
-\
-${perf.hashtag} #B2BSales #Growth #SalesRocket`;
-
-        const paddings = [
-            \\\"\
-\
-PS: A janela de oportunidade no mercado brasileiro está se fechando rápido. Quem tem método escala, quem não tem, assiste.\\\",
-            `\
-\
-A ${prod.nome} é o motor que sua empresa precisa para alcançar a ${prod.promessa} operacional.`,
-            \\\"\
-\
-O tempo é o único recurso não renovável. Pare de 'tentar' e comece a dominar sua categoria hoje.\\\"
-        ];
-        
-        let i = 0;
-        while(content.length < 1400 && i < paddings.length) { content += paddings[i]; i++; }
-
-        document.getElementById('postOutput').innerHTML = content + '<button class=\\\"copy-btn\\\" id=\\\"copyPost\\\">COPIAR POST</button>';
-        
-        const prompt = prompts[Math.floor(Math.random() * prompts.length)];
-        document.getElementById('promptOutput').innerHTML = prompt + '<button class=\\\"copy-btn\\\" id=\\\"copyPrompt\\\" style=\\\"top:0.5rem; right:0.5rem; padding:0.4rem 0.8rem;\\\">COPIAR</button>';
-
-        const count = content.length;
-        document.getElementById('charStats').textContent = `Caracteres: ${count} | Tempo de leitura: ~${Math.round(count/20)}s | Status: OTIMIZADO`;
-
-        setupCopy('copyPost', 'postOutput');
-        setupCopy('copyPrompt', 'promptOutput');
-    };
-
-    function setupCopy(btnId, outId) {
-        const btn = document.getElementById(btnId);
-        btn.onclick = () => {
-            const text = document.getElementById(outId).innerText.replace('COPIAR POST', '').replace('COPIAR', '').trim();
-            navigator.clipboard.writeText(text).then(() => {
-                btn.textContent = 'COPIADO!';
-                setTimeout(() => btn.textContent = btnId === 'copyPost' ? 'COPIAR POST' : 'COPIAR', 2000);
-            });
+    <script>
+        const perfilData = {
+            gabriel: { autor: "Gabriel", voz: "Operacional e Direta", foco: "Sales Ops & SDRs", hashtag: "#SalesOps" },
+            enrico: { autor: "Enrico", voz: "Humana e Analítica", foco: "Recrutamento B2B", hashtag: "#TalentAcquisition" },
+            thiago: { autor: "Thiago", voz: "Técnica e Inovadora", foco: "Tech & Automação", hashtag: "#SalesTech" },
+            danilo: { autor: "Danilo Bonfim", voz: "Estratégica e Visionária", foco: "GTM & Arquitetura", hashtag: "#GrowthStrategy" }
         };
-    }
-</script>
 
+        const produtoData = {
+            'sales-rocket': { nome: "Sales Rocket", entrega: "Arquitetura de Receita", promessa: "escala previsível" },
+            'talent-rocket': { nome: "Talent Rocket", entrega: "Hunting de Especialistas", promessa: "time de elite" },
+            'tech-rocket': { nome: "Tech Rocket", entrega: "Setup de CRM & Stack", promessa: "eficiência total" }
+        };
+
+        const lib = {
+            hooks: [
+                (p, pr, t) => `O LinkedIn virou um oceano de posts genéricos. Mas quem domina ${t} está jogando outro jogo. 🌊`,
+                (p, pr, t) => `Pare de postar por postar. Se você quer gerar agendamentos com ${t}, precisa de uma Isca Digital impossível de ignorar.`,
+                (p, pr, t) => `A verdade sobre ${t}: ou você tem um processo, ou você tem um hobby caro. 💸`,
+                (p, pr, t) => `Como saímos do zero para 10+ reuniões semanais focando apenas em ${t}.`,
+                (p, pr, t) => `O erro nº 1 que destrói a conversão de ${t} em operações B2B.`
+            ],
+            bodies: [
+                (p, pr, t) => `Na ${pr.nome}, validamos que o segredo não é o volume, mas a relevância. No foco de ${p.foco}, a clareza vence o ruído.`,
+                (p, pr, t) => `Nós construímos a ${pr.entrega} baseada em dados reais. Para ${t}, aplicamos o framework de 'Micro-Sims' que acelera o pipeline.`,
+                (p, pr, t) => `O mercado brasileiro amadureceu. Hoje, para vender ${pr.nome}, você precisa educar antes de prospectar.`,
+                (p, pr, t) => `Imagine ter um motor de demanda onde ${t} é o combustível principal para atingir a ${pr.promessa}.`
+            ],
+            magnets: [
+                (p, pr, t) => `Construí um material completo: 'O Mapa da Mina de ${t}'.
+
+Lá eu mostro:
+✅ O workflow exato que usamos na ${pr.nome}
+✅ Templates de mensagens de alta conversão
+✅ Checklist de setup para ${p.foco}`,
+                (p, pr, t) => `Liberei meu Playbook interno de ${t}. É o mesmo que usamos para garantir a ${pr.promessa} dos nossos clientes.`,
+                (p, pr, t) => `Desenvolvi uma Calculadora de ROI para ${t}. Chega de chutar números na hora de apresentar para o board.`
+            ],
+            ctas: [
+                (p, pr, t, k) => `Quer acesso a esse material de ${t}? Comenta "${k}" abaixo e eu te envio agora no inbox. 🚀`,
+                (p, pr, t, k) => `Vou liberar apenas 20 acessos para o guia de ${t}. Digite "${k}" para garantir o seu.`,
+                (p, pr, t, k) => `Não perca mais tempo tentando adivinhar. Escreva "${k}" aqui embaixo e receba o playbook de ${pr.entrega}.`
+            ]
+        };
+
+        document.getElementById('gerarBtn').onclick = () => {
+            const perf = perfilData[document.getElementById('perfil').value];
+            const prod = produtoData[document.getElementById('produto').value];
+            const tema = document.getElementById('tema').value || 'Performance B2B';
+            const key = document.getElementById('cta').value || 'EU QUERO';
+            
+            const hook = lib.hooks[Math.floor(Math.random() * lib.hooks.length)](perf, prod, tema);
+            const body = lib.bodies[Math.floor(Math.random() * lib.bodies.length)](perf, prod, tema);
+            const magnet = lib.magnets[Math.floor(Math.random() * lib.magnets.length)](perf, prod, tema);
+            const cta = lib.ctas[Math.floor(Math.random() * lib.ctas.length)](perf, prod, tema, key);
+
+            let content = `${hook}
+
+${body}
+
+${magnet}
+
+${cta}
+
+${perf.hashtag} #SalesRocket #GTM #B2B`;
+            
+            document.getElementById('postOutput').innerHTML = content + '<button class="copy-btn" id="copyPost">COPIAR POST</button>';
+            
+            const count = content.length;
+            document.getElementById('charStats').textContent = `Caracteres: ${count} | Tempo de leitura: ~${Math.round(count/20)}s | Status: OTIMIZADO`;
+            
+            document.getElementById('copyPost').onclick = () => {
+                const text = document.getElementById('postOutput').innerText.replace('COPIAR POST', '').trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    document.getElementById('copyPost').textContent = 'COPIADO!';
+                    setTimeout(() => document.getElementById('copyPost').textContent = 'COPIAR POST', 2000);
+                });
+            };
+        };
+    </script>
 </body>
 </html>
