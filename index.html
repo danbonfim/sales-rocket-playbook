@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Rocket | Ultra Playbook & Content Generator v3.0</title>
+    <title>Sales Rocket | Ultra Playbook & Content Generator v4.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF5C00;
+            --primary: #00B4FF;
             --bg: #0B0D11;
             --card-bg: #161B22;
             --text: #E6EDF3;
             --text-muted: #8B949E;
             --border: #30363D;
-            --accent: #1F6FEB;
+            --cyan-gradient: linear-gradient(90deg, #00B4FF 0%, #0082FF 100%);
+            --glow: 0 0 20px rgba(0, 180, 255, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,6 +27,7 @@
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        
         header {
             display: flex;
             justify-content: space-between;
@@ -35,134 +37,170 @@
             margin-bottom: 3rem;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
         }
-        .logo span { color: white; }
+
+        .logo-svg {
+            height: 40px;
+            width: auto;
+        }
+
         .badge {
-            background: rgba(255, 92, 0, 0.1);
+            background: rgba(0, 180, 255, 0.1);
             color: var(--primary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
+            border: 1px solid rgba(0, 180, 255, 0.2);
         }
 
         .hero { margin-bottom: 4rem; text-align: center; }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: -1px; }
-        .hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
+        .hero h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 1.5rem; 
+            letter-spacing: -2px; 
+            font-weight: 800;
+        }
+        .hero h1 span {
+            background: var(--cyan-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p { color: var(--text-muted); font-size: 1.25rem; max-width: 700px; margin: 0 auto; }
 
-        .grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; align-items: start; }
+        .grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2.5rem; align-items: start; }
+        
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 2.5rem;
             margin-bottom: 2rem;
+            position: relative;
+            transition: border-color 0.3s;
         }
+        .card:hover { border-color: var(--primary); }
 
-        .card h2 { font-size: 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        label { display: block; margin-bottom: 0.5rem; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
-        select, input, textarea {
+        .card h2 { font-size: 1.25rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 700; }
+        
+        label { display: block; margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        select, input {
             width: 100%;
-            padding: 0.8rem;
+            padding: 1rem;
             background: #0D1117;
             border: 1px solid var(--border);
             border-radius: 8px;
             color: white;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             font-family: inherit;
+            transition: border-color 0.2s;
         }
+        select:focus, input:focus { border-color: var(--primary); outline: none; }
 
-        button {
+        button#gerarBtn {
             width: 100%;
-            padding: 1rem;
+            padding: 1.25rem;
             background: var(--primary);
             color: white;
             border: none;
             border-radius: 8px;
-            font-weight: 700;
+            font-weight: 800;
             cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
+            transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            box-shadow: var(--glow);
         }
-        button:hover { background: #e65200; transform: translateY(-2px); }
+        button#gerarBtn:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 0 30px rgba(0, 180, 255, 0.5); }
 
-        .output-container { position: sticky; top: 2rem; }
         .output-box {
             background: #0D1117;
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            font-size: 0.95rem;
+            border-radius: 12px;
+            padding: 2rem;
+            font-size: 1rem;
             white-space: pre-wrap;
             position: relative;
-            min-height: 400px;
+            min-height: 450px;
+            line-height: 1.8;
         }
+        
         .copy-btn {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             width: auto;
-            padding: 0.5rem 1rem;
-            font-size: 0.7rem;
-            background: var(--border);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.75rem;
+            background: #00B4FF;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: 700;
         }
 
         .stats {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            font-size: 0.8rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
-        }
-
-        .playbook-section {
-            margin-top: 4rem;
-            padding-top: 4rem;
-            border-top: 1px solid var(--border);
+            font-weight: 500;
         }
 
         .strategy-card {
             background: #0D1117;
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0 8px 8px 0;
+            border-top: 2px solid var(--primary);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
         }
-        .strategy-card h3 { color: var(--primary); font-size: 1rem; margin-bottom: 0.5rem; }
+        .strategy-card h3 { 
+            color: var(--primary); 
+            font-size: 1.1rem; 
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <div class="logo">🚀 Sales <span>Rocket</span></div>
-        <div class="badge">B2B Content Engine v3.0</div>
+        <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 400 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Circular Rocket Icon -->
+                <circle cx="30" cy="30" r="28" stroke="white" stroke-width="3" fill="none"/>
+                <path d="M42 18C42 18 35 15 30 15C25 15 18 18 18 18C18 18 20 30 30 45C40 30 42 18 42 18Z" fill="#00B4FF"/>
+                <path d="M30 45V15" stroke="white" stroke-width="2"/>
+                <!-- SALES ROCKET Text -->
+                <text x="70" y="45" font-family="Inter" font-weight="900" font-size="38" fill="#00B4FF">SALES ROCKET</text>
+            </svg>
+        </div>
+        <div class="badge">B2B Content Engine v4.0</div>
     </header>
 
     <div class="hero">
-        <h1>Gerador de Autoridade Multi-Perfil</h1>
-        <p>Gere posts únicos e ultra-personalizados para LinkedIn focados em conversão diária.</p>
+        <h1>Como <span>funciona?</span></h1>
+        <p>Gere posts de alta conversão em 3 passos simples com o motor ultra-playbook da Sales Rocket.</p>
     </div>
 
     <div class="grid">
         <div class="input-section">
             <div class="card">
-                <h2>⚙️ Configuração do Motor</h2>
+                <h2>⚙️ Configuração</h2>
                 
-                <label>Perfil de Saída (Autor)</label>
+                <label>Perfil de Saída</label>
                 <select id="perfil">
                     <option value="danilo">Danilo Bonfim (GTM & Strategy)</option>
                     <option value="gabriel">Gabriel (Sales Ops & SDRs)</option>
@@ -185,28 +223,28 @@
                     <option value="trend">Trend & Algorithm (Hype)</option>
                 </select>
 
-                <label>Tema Central / Tópico</label>
+                <label>Tema Central</label>
                 <input type="text" id="tema" placeholder="Ex: Arquitetura de Receita, Outbound...">
 
                 <label>Palavra-chave CTA</label>
                 <input type="text" id="cta" placeholder="Ex: EU QUERO, GUIA, DEMO...">
 
-                <button id="gerarBtn">GERAR POST EXCLUSIVO</button>
+                <button id="gerarBtn">GERAR CONTEÚDO AGORA</button>
             </div>
 
-            <div class="card">
-                <h2>🖼️ Midjourney AI Prompt</h2>
-                <div class="output-box" id="promptOutput" style="min-height: 100px;">
-                    Prompt da imagem aparecerá aqui...
+            <div class="card" style="padding: 1.5rem;">
+                <h2>🖼️ Prompt Midjourney</h2>
+                <div class="output-box" id="promptOutput" style="min-height: 80px; padding: 1rem; font-size: 0.85rem;">
+                    Prompt aparecerá aqui...
                 </div>
             </div>
         </div>
 
         <div class="output-container">
             <div class="card">
-                <h2>📝 Conteúdo Otimizado</h2>
+                <h2>📝 Post Otimizado</h2>
                 <div class="output-box" id="postOutput">
-                    Seu conteúdo aparecerá aqui após clicar em gerar...
+                    Configure ao lado e clique em Gerar para ver a mágica...
                 </div>
                 <div class="stats" id="charStats">
                     Caracteres: 0 | Tempo de leitura: 0s | Status: AGUARDANDO
@@ -215,33 +253,34 @@
         </div>
     </div>
 
-    <div class="playbook-section">
-        <h2 style="margin-bottom: 2rem;">Research: LinkedIn Uniqueness 2025</h2>
-        <div class="grid" style="grid-template-columns: 1fr 1fr;">
-            <div class="strategy-card">
-                <h3>Variação Sintática</h3>
-                <p>O algoritmo do LinkedIn detecta posts repetidos e reduz o alcance. O v3.0 usa um motor de permutação para garantir que cada geração seja estruturalmente diferente.</p>
-            </div>
-            <div class="strategy-card">
-                <h3>Contextual Matching</h3>
-                <p>Posts devem alinhar o perfil do autor com o produto. Danilo fala de estratégia, Thiago de código/ferramenta, mas ambos vendem o ecossistema Rocket.</p>
-            </div>
+    <div class="hero" style="margin-top: 6rem; margin-bottom: 3rem;">
+        <h1>Por que usar nossa <span>ferramenta?</span></h1>
+    </div>
+
+    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="strategy-card">
+            <h3>🔹 Variação Sintática</h3>
+            <p>Algoritmo do LinkedIn privilegia originalidade. Nossa ferramenta garante que nenhum post seja igual ao outro através de rotação de componentes.</p>
+        </div>
+        <div class="strategy-card">
+            <h3>🔹 Autoridade Multi-Perfil</h3>
+            <p>Adapte o tom de voz instantaneamente para diferentes especialistas, mantendo a unidade da marca Sales Rocket.</p>
         </div>
     </div>
 </div>
 
 <script>
     const perfilData = {
-        danilo: { autor: "Danilo Bonfim", voz: "Estratégica e Visionária", foco: "Engenharia de Receita & GTM", hashtag: "#GrowthStrategy" },
-        gabriel: { autor: "Gabriel", voz: "Pragmática e Operacional", foco: "Liderança de SDRs e Outbound", hashtag: "#SalesOps" },
-        enrico: { autor: "Enrico", voz: "Humana e Conectada", foco: "Hiring e Cultura Comercial", hashtag: "#TalentAcquisition" },
-        thiago: { autor: "Thiago", voz: "Técnica e Eficiente", foco: "Automação e CRM Stack", hashtag: "#SalesTech" }
+        danilo: { autor: "Danilo Bonfim", voz: "Estratégica", foco: "GTM", hashtag: "#GrowthStrategy" },
+        gabriel: { autor: "Gabriel", voz: "Operacional", foco: "SDRs", hashtag: "#SalesOps" },
+        enrico: { autor: "Enrico", voz: "Humana", foco: "Hiring", hashtag: "#TalentAcquisition" },
+        thiago: { autor: "Thiago", voz: "Técnica", foco: "Automação", hashtag: "#SalesTech" }
     };
 
     const produtoData = {
-        'sales-rocket': { nome: "Sales Rocket", entrega: "Arquitetura de Receita e GTM", promessa: "previsibilidade de pipeline" },
-        'talent-rocket': { nome: "Talent Rocket", entrega: "Hunting de Talentos A-Player", promessa: "time comercial de alta performance" },
-        'tech-rocket': { nome: "Tech Rocket", entrega: "Implementação de CRM e Automação", promessa: "eficiência operacional máxima" }
+        'sales-rocket': { nome: "Sales Rocket", entrega: "Arquitetura de Receita", promessa: "previsibilidade" },
+        'talent-rocket': { nome: "Talent Rocket", entrega: "Hunting de Talentos", promessa: "performance" },
+        'tech-rocket': { nome: "Tech Rocket", entrega: "Setup de CRM", promessa: "eficiência" }
     };
 
     const componentLib = {
@@ -280,9 +319,9 @@
     };
 
     const prompts = [
-        "Hyper-realistic B2B office scene, dark atmospheric lighting, Sales Rocket orange accents, 8k --ar 16:9",
-        "3D isometric render of a rocket launching from a circuit board, futuristic navy and orange, high detail --ar 16:9",
-        "Cinematic portrait of a business leader looking at holographic data charts, orange glow, professional --ar 16:9"
+        "Hyper-realistic B2B office scene, cyan lighting accents, cinematic 8k --ar 16:9",
+        "3D render of a rocket launching through digital data streams, cyan and navy --ar 16:9",
+        "Modern corporate leader silhouette, glowing cyan background, minimalist --ar 16:9"
     ];
 
     document.getElementById('gerarBtn').onclick = () => {
@@ -291,7 +330,6 @@
         const tema = document.getElementById('tema').value || 'Arquitetura de Receita';
         const key = document.getElementById('cta').value || 'EU QUERO';
         
-        // Uniqueness Engine: Pick random components
         const hook = componentLib.hooks[Math.floor(Math.random() * componentLib.hooks.length)](perf, prod, tema);
         const body = componentLib.bodies[Math.floor(Math.random() * componentLib.bodies.length)](perf, prod, tema);
         const list = componentLib.lists[Math.floor(Math.random() * componentLib.lists.length)](perf, prod, tema);
@@ -305,27 +343,30 @@ ${list}
 
 ${cta}
 
-${perf.hashtag} #B2BSales #Growth #LinkedIn2025`;
+${perf.hashtag} #B2BSales #Growth #SalesRocket`;
 
-        // Smart Padding for Character Limit
         const paddings = [
-                        "\nPS: A janela de oportunidade no mercado brasileiro está se fechando. Quem tem método escala, quem não tem, assiste.",
-            `\nA ${prod.nome} é o motor que sua empresa precisa para alcançar a ${prod.promessa}.`,
-            "\nO tempo é o único recurso não renovável. Pare de 'tentar' e comece a dominar sua categoria hoje."
-        ];
-        let i = 0;
-        while(content.length < 1400 && i < paddings.length) {
-            content += paddings[i];
-            i++;
-        }
+            "
 
-        document.getElementById('postOutput').innerHTML = content + '<button class="copy-btn" id="copyPost">COPIAR</button>';
+PS: A janela de oportunidade no mercado brasileiro está se fechando rápido. Quem tem método escala, quem não tem, assiste.",
+            `
+
+A ${prod.nome} é o motor que sua empresa precisa para alcançar a ${prod.promessa} operacional.`,
+            "
+
+O tempo é o único recurso não renovável. Pare de 'tentar' e comece a dominar sua categoria hoje."
+        ];
+        
+        let i = 0;
+        while(content.length < 1400 && i < paddings.length) { content += paddings[i]; i++; }
+
+        document.getElementById('postOutput').innerHTML = content + '<button class="copy-btn" id="copyPost">COPIAR POST</button>';
         
         const prompt = prompts[Math.floor(Math.random() * prompts.length)];
-        document.getElementById('promptOutput').innerHTML = prompt + '<button class="copy-btn" id="copyPrompt">COPIAR</button>';
+        document.getElementById('promptOutput').innerHTML = prompt + '<button class="copy-btn" id="copyPrompt" style="top:0.5rem; right:0.5rem; padding:0.4rem 0.8rem;">COPIAR</button>';
 
         const count = content.length;
-        document.getElementById('charStats').textContent = `Caracteres: ${count} | Tempo de leitura: ~${Math.round(count/20)}s | Status: ${count >= 1400 ? 'OTIMIZADO' : 'GERADO'}`;
+        document.getElementById('charStats').textContent = `Caracteres: ${count} | Tempo de leitura: ~${Math.round(count/20)}s | Status: OTIMIZADO`;
 
         setupCopy('copyPost', 'postOutput');
         setupCopy('copyPrompt', 'promptOutput');
@@ -334,10 +375,10 @@ ${perf.hashtag} #B2BSales #Growth #LinkedIn2025`;
     function setupCopy(btnId, outId) {
         const btn = document.getElementById(btnId);
         btn.onclick = () => {
-            const text = document.getElementById(outId).innerText.replace('COPIAR', '').trim();
+            const text = document.getElementById(outId).innerText.replace('COPIAR POST', '').replace('COPIAR', '').trim();
             navigator.clipboard.writeText(text).then(() => {
                 btn.textContent = 'COPIADO!';
-                setTimeout(() => btn.textContent = 'COPIAR', 2000);
+                setTimeout(() => btn.textContent = btnId === 'copyPost' ? 'COPIAR POST' : 'COPIAR', 2000);
             });
         };
     }
