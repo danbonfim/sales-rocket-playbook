@@ -26,7 +26,7 @@
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-
+        
         header {
             display: flex;
             justify-content: space-between;
@@ -46,7 +46,6 @@
             align-items: center;
             gap: 0.5rem;
         }
-
         .logo span { color: white; }
 
         .badge {
@@ -63,12 +62,7 @@
         .hero h1 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: -1px; }
         .hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
 
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 2rem;
-            align-items: start;
-        }
+        .grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; align-items: start; }
 
         .card {
             background: var(--card-bg);
@@ -79,7 +73,7 @@
         }
 
         .card h2 { font-size: 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        
+
         label { display: block; margin-bottom: 0.5rem; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
         select, input, textarea {
             width: 100%;
@@ -109,7 +103,6 @@
         button:hover { background: #e65200; transform: translateY(-2px); }
 
         .output-container { position: sticky; top: 2rem; }
-        
         .output-box {
             background: #0D1117;
             border: 1px solid var(--border);
@@ -131,116 +124,146 @@
             background: var(--border);
         }
 
-        .stats {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+        .stats { display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); }
 
-        .visual-prompt {
-            margin-top: 2rem;
+        .playbook-section {
+            margin-top: 4rem;
+            padding-top: 4rem;
             border-top: 1px solid var(--border);
-            padding-top: 1rem;
         }
 
-        .visual-prompt h3 { font-size: 0.9rem; color: var(--primary); margin-bottom: 0.5rem; }
-        .prompt-text { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+        .strategy-card {
+            background: #0D1117;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .strategy-card h3 { color: var(--primary); font-size: 1rem; margin-bottom: 0.5rem; }
 
         @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <div class="logo">🚀 Sales <span>Rocket</span></div>
+            <div class="badge">B2B Growth Engine v2.0</div>
+        </header>
 
-<div class="container">
-    <header>
-        <div class="logo">🚀 Sales <span>Rocket</span></div>
-        <div class="badge">B2B Growth Engine v2.0</div>
-    </header>
+        <section class="hero">
+            <h1>Gerador de Autoridade</h1>
+            <p>Crie posts magnéticos para o LinkedIn focados em geração de demanda e ritos de passagem para o B2B brasileiro.</p>
+        </section>
 
-    <div class="hero">
-        <h1>Gerador de Autoridade</h1>
-        <p>Crie posts magnéticos para o LinkedIn focados em geração de demanda e ritos de passagem para o B2B brasileiro.</p>
-    </div>
-
-    <div class="grid">
-        <div class="input-section">
-            <div class="card">
-                <h2>Configuração do Motor</h2>
-                
-                <label>Perfil de Saída (Tom de Voz)</label>
-                <select id="perfil">
-                    <option value="danilo">Danilo Bonfim (Traction X/Growth)</option>
-                    <option value="salesrocket">Sales Rocket (Consultoria/Especialista)</option>
-                    <option value="recruiter">Talent Rocket (HR Tech/Talent)</option>
-                </select>
-
-                <label>Tipo de Gancho (Framework)</label>
-                <select id="tipo">
-                    <option value="pain-long">Ataque à Dor (Texto Longo - Autoridade)</option>
-                    <option value="lead-magnet">Lead Magnet (Isca Digital/Download)</option>
-                    <option value="fomo-algorithm">FOMO & Algoritmo (Hype/Urgência)</option>
-                    <option value="comparison">LinkedIn vs Instagram (Educativo/B2B)</option>
-                    <option value="story-long">Storytelling (Conexão & Rapport)</option>
-                </select>
-
-                <label>Tema Central / Tópico</label>
-                <input type="text" id="tema" placeholder="Ex: Arquitetura de Receita, GTM, Prospecção...">
-
-                <label>Call to Action (CTA)</label>
-                <input type="text" id="cta" placeholder="Ex: Eu quero, Diagnóstico, Guia...">
-
-                <button id="gerarBtn">Gerar Post de Alta Conversão</button>
-            </div>
-        </div>
-
-        <div class="output-section">
-            <div class="output-container">
-                <div class="card" style="margin-bottom: 0;">
-                    <h2>Conteúdo Otimizado</h2>
-                    <div class="output-box" id="postOutput">
-                        Seu conteúdo aparecerá aqui após clicar em gerar...
-                    </div>
-                    <div class="stats" id="charCount">Caracteres: 0 | Tempo de leitura: 0s | Status: AGUARDANDO</div>
+        <div class="grid">
+            <div class="input-panel">
+                <div class="card">
+                    <h2>Configuração do Motor</h2>
                     
-                    <div class="visual-prompt">
-                        <h3>Midjourney / AI Prompt para este post:</h3>
-                        <div class="output-box" id="promptOutput" style="min-height: 80px; padding-top: 2.5rem;">
-                            Prompt da imagem aparecerá aqui...
+                    <label>Perfil de Saída (Tom de Voz)</label>
+                    <select id="perfil">
+                        <option value="danilo">Danilo Bonfim (Traction X/Growth)</option>
+                        <option value="salesrocket">Sales Rocket (Consultoria/Especialista)</option>
+                    </select>
+
+                    <label>Tipo de Gancho (Framework)</label>
+                    <select id="tipo">
+                        <option value="lead-magnet">Lead Magnet (Isca Digital/Download)</option>
+                        <option value="pain-long">Ataque à Dor (Texto Longo - Autoridade)</option>
+                        <option value="story-long">Storytelling (Conexão & Rapport)</option>
+                        <option value="fomo-algorithm">FOMO & Algoritmo (Hype/Urgência)</option>
+                    </select>
+
+                    <label>Tema Central / Tópico</label>
+                    <input type="text" id="tema" placeholder="Ex: Arquitetura de Receita, GTM, Prospecção...">
+
+                    <label>Call to Action (CTA)</label>
+                    <input type="text" id="cta" placeholder="Ex: EU QUERO, DIAGNÓSTICO, GUIA...">
+
+                    <button id="gerarBtn">Gerar Post de Alta Conversão</button>
+                </div>
+
+                <div class="card">
+                    <h2>Midjourney AI Prompt</h2>
+                    <div id="promptOutput" class="output-box" style="min-height: 100px; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+                        Prompt da imagem aparecerá aqui...
+                    </div>
+                </div>
+            </div>
+
+            <div class="output-panel">
+                <div class="output-container">
+                    <div class="card">
+                        <h2>Conteúdo Otimizado</h2>
+                        <div id="postOutput" class="output-box">
+                            Seu conteúdo aparecerá aqui após clicar em gerar...
+                        </div>
+                        <div id="charCount" class="stats">
+                            Caracteres: 0 | Tempo de leitura: 0s | Status: AGUARDANDO
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <section class="playbook-section">
+            <h2 style="margin-bottom: 2rem; font-size: 2rem;">Research: Lead Magnet & LinkedIn 2025</h2>
+            <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="strategy-card">
+                    <h3>Pilar 1: O Flywheel do Comentário</h3>
+                    <p>Posts com Lead Magnets geram 3-5x mais comentários. No LinkedIn 2025, o comentário é a moeda de troca. Quanto mais pessoas comentam a sua "palavra-chave", mais o algoritmo entrega para novos decisores do mesmo nicho.</p>
+                </div>
+                <div class="strategy-card">
+                    <h3>Pilar 2: Low Friction Access</h3>
+                    <p>Esqueça landing pages complexas para o LinkedIn. A tendência é o "Zero-Click Content". Entregue o valor diretamente no inbox de quem comentou. Isso constrói rapport imediato e evita que o usuário saia da plataforma.</p>
+                </div>
+                <div class="strategy-card">
+                    <h3>Pilar 3: Psicologia da Escassez</h3>
+                    <p>Não ofereça para sempre. Use ganchos de tempo ou quantidade: "Vou liberar apenas para as primeiras 20 pessoas" ou "Disponível até sexta-feira". Isso acelera a tomada de decisão do ICP.</p>
+                </div>
+                <div class="strategy-card">
+                    <h3>Pilar 4: Autoridade B2B</h3>
+                    <p>Seu lead magnet deve resolver um problema *específico*. Checklists, calculadoras de ROI e frameworks de processo (como a Arquitetura de Receita) são os que mais convertem em reuniões qualificadas.</p>
+                </div>
+            </div>
+        </section>
     </div>
-</div>
 
-<script>
-    const perfilData = {
-        danilo: {
-            autor: "Danilo Bonfim",
-            empresa: "Traction X",
-            foco: "Engenharia de Receita & GTM",
-            f: "Revenue Engineering"
-        },
-        salesrocket: {
-            autor: "Time Sales Rocket",
-            empresa: "Sales Rocket",
-            foco: "Consultoria de Vendas B2B",
-            f: "Sales Architecture"
-        },
-        recruiter: {
-            autor: "Talent Rocket",
-            empresa: "Talent Rocket",
-            foco: "Recrutamento para Mkt & Vendas",
-            f: "Top Tier Hiring"
-        }
-    };
+    <script>
+        const perfilData = {
+            danilo: { autor: "Danilo Bonfim", empresa: "Traction X", foco: "Engenharia de Receita & GTM", f: "Revenue Engineering" },
+            salesrocket: { autor: "Time Sales Rocket", empresa: "Sales Rocket", foco: "Consultoria de Vendas B2B", f: "Sales Architecture" }
+        };
 
-    const templates = {
-        'pain-long': [
-            (d, t, k) => `Sua operação de ${t} está sangrando e você está tentando curar com um band-aid. 🩸
+        const templates = {
+            'lead-magnet': [
+                (d, t, k) => `Eu cansei de ver empresas B2B perdendo dinheiro com leads desqualificados em ${t}. 📉
+
+Por isso, decidi abrir a "caixa preta" da ${d.empresa}. Montamos um material prático sobre ${t} que é exatamente o que usamos para gerar 5-10 reuniões qualificadas por semana para nossos clientes.
+
+O que tem dentro desta Isca Magnética:
+✅ O Fluxo de Cadência Inquebrável
+✅ Framework de Mensagem para C-Level (BR)
+✅ Checklist de Setup de Ferramentas
+
+Não é um e-book teórico. É um guia de execução.
+
+No mercado brasileiro, conexão gera contrato. Se você não sabe criar rapport via conteúdo, você está fora do jogo. Este material foi desenhado para quem atua com ${d.foco} e precisa de previsibilidade.
+
+Como acessar?
+1. Curte este post para o algoritmo entender que é relevante.
+2. Comenta "${k}" abaixo.
+
+Vou enviar pessoalmente no seu inbox. Sem landing page, sem fricção. Só valor direto.
+
+🚀 Vamos decolar sua operação de ${t}?
+
+#LeadGeneration #B2BSales #SalesRocket #Growth #GTM`
+            ],
+            'pain-long': [
+                (d, t, k) => `Sua operação de ${t} está sangrando e você está tentando curar com um band-aid. 🩸
 
 A verdade é brutal: se o seu time não bate meta há 3 meses consecutivos, o problema não é o cenário macroeconômico. É a sua ${d.foco}.
 
@@ -253,100 +276,20 @@ Agite a dor agora ou sofra as consequências no caixa:
 
 Na ${d.empresa}, nós aplicamos a ciência por trás do framework ${d.f}. Nós não pedimos permissão para vender. Nós ditamos o ritmo porque entendemos a arquitetura de receita que o mercado brasileiro exige hoje.
 
-Enquanto você hesita em profissionalizar sua ${d.foco}, seu maior concorrente está lendo este post e possivelmente agendando com o seu ICP. O FOMO aqui não é marketing, é realidade operacional.
+Enquanto você hesita em profissionalizar sua ${d.foco}, seu maior concorrente está lendo este post e possivelmente agendando com o seu ICP.
 
 A escala exige rituais, dados e método inegociável. Sem isso, sua empresa é apenas uma aposta de alto risco.
 
 Você prefere continuar "tentando" ou quer começar a dominar?
 
-A ${d.empresa} já transformou mais de 300 operations B2B. A próxima pode ser a sua.
+A ${d.empresa} já transformou centenas de operações B2B. A próxima pode ser a sua.
 
-💬 Comenta "${k}" e eu vou liberar um diagnóstico exclusivo da nossa metodologia para o seu negócio. É hora de parar o sangramento.
+💬 Comenta "${k}" e eu vou liberar um diagnóstico exclusivo da nossa metodologia para o seu negócio.
 
-#VendasB2B #SalesRocket #EficienciaComercial #GTM`
-        ],
-        'lead-magnet': [
-            (d, t, k) => `Eu cansei de ver empresas B2B perdendo dinheiro com leads desqualificados. 📉
-
-Por isso, decidi abrir a "caixa preta" da ${d.empresa}.
-
-Montamos um material prático sobre ${t} que é exatamente o que usamos para gerar 5-10 reuniões qualificadas por semana para nossos clientes de consultoria.
-
-O que tem dentro desta Isca Magnética:
-✅ O Fluxo de Cadência Inquebrável
-✅ Framework de Mensagem para C-Level (BR)
-✅ Checklist de Setup de Ferramentas
-
-Não é um e-book teórico. É um guia de execução.
-
-No mercado brasileiro, conexão gera contrato. Se você não sabe criar rapport via conteúdo, você está fora do jogo. 
-
-Este material foi desenhado para quem atua com ${d.foco} e precisa de previsibilidade.
-
-Como acessar?
-1. Curte este post para o algoritmo entender que é relevante.
-2. Comenta "${k}" abaixo.
-
-Vou enviar pessoalmente no seu inbox. Sem landing page, sem fricção. Só valor direto.
-
-🚀 Vamos decolar sua ${t}?
-
-#LeadGeneration #B2BSales #SalesRocket #Growth`
-        ],
-        'fomo-algorithm': [
-            (d, t, k) => `O algoritmo do LinkedIn mudou de novo e sua estratégia de ${t} ficou obsoleta. ⚡
-
-Você percebeu a queda no alcance? Não é coincidência. O LinkedIn agora privilegia o "Dwell Time" e a profundidade da conversa, não apenas o like vazio.
-
-Se você ainda posta como se estivesse no Instagram, você está desperdiçando o maior ativo do B2B: a confiança dos decisores.
-
-A estratégia infalível hoje baseia-se em 3 pilares que aplicamos na ${d.empresa}:
-1. Autoridade Técnica (Sem "papo furado")
-2. Social Proof Dinâmico
-3. Escassez de Acesso
-
-Quem dominar ${t} nos próximos 6 meses terá o monopólio da atenção no seu nicho. Quem ignorar, vai pagar 3x mais caro no tráfego pago para tentar compensar o silêncio orgânico.
-
-O mercado B2B brasileiro é relacional. O algoritmo é apenas o meio, o método ${d.f} é o fim.
-
-Quer saber como hackear essa nova fase e garantir sua agenda cheia?
-
-Eu tenho 5 vagas para sessões estratégicas de ${t} este mês.
-
-Digite "${k}" nos comentários se você quer ser um dos 5 que vão ditar as regras do mercado.
-
-#LinkedInAlgorithm #B2BMarketing #SalesRocket #DemandGen`
-        ],
-        'comparison': [
-            (d, t, k) => `LinkedIn vs Instagram: Onde o dinheiro real do B2B está escondido? 🧐
-
-Muitos fundadores me perguntam: "Danilo, devo postar dancinha ou artigo técnico?"
-
-A resposta curta: Depende de quem assina o cheque.
-
-Se o seu cliente é o CPF emocional, vá para o Instagram. Se o seu cliente é o CNPJ racional (B2B), o LinkedIn é sua sede corporativa.
-
-Diferença de Mentalidade (Mindset):
-• Instagram: Entretenimento e Dopamina.
-• LinkedIn: Educação, Carreira e ROI.
-
-Na ${d.empresa}, entendemos que em ${t}, o ciclo de venda é longo e complexo. Você não vende uma consultoria de alto valor com um post de 15 segundos. Você vende com prova de conceito, frameworks como o ${d.f} e autoridade.
-
-O processo vencedor no LinkedIn para ${d.foco}:
-Insight -> Desconforto -> Prova -> Chamada.
-
-Enquanto o Instagram foca na estética, o LinkedIn foca na Ética e na Eficiência.
-
-Qual estratégia você está usando para dominar ${t}?
-
-Se você quer o nosso comparativo completo de cadências e rituais para cada rede, eu preparei um PDF exclusivo.
-
-👇 Comenta "${k}" que eu te mando o link.
-
-#B2BStrategy #SalesRocket #VendasConsultivas #MarketingDigital`
-        ],
-        'story-long': [
-            (d, t, k) => `Em 2023, um cliente chegou na ${d.empresa} com um problema: "Temos o melhor produto de ${t}, mas ninguém atende nossas ligações." 📞
+#VendasB2B #SalesRocket #EficienciaComercial #GTM #InsideSales`
+            ],
+            'story-long': [
+                (d, t, k) => `Em 2024, um cliente chegou na ${d.empresa} com um problema: "Temos o melhor produto de ${t}, mas ninguém atende nossas ligações." 📞
 
 O erro deles? Eles eram invisíveis onde os clientes deles tomavam café: o feed do LinkedIn.
 
@@ -369,57 +312,94 @@ Quer conhecer os detalhes desse case e como replicar na sua empresa?
 
 Escreve "${k}" aqui embaixo e vamos conversar sobre o seu próximo salto.
 
-#SuccessStory #SalesRocket #GTM #VendasB2B`
-        ]
-    };
+#SuccessStory #SalesRocket #GTM #VendasB2B #GrowthStrategy`
+            ],
+            'fomo-algorithm': [
+                (d, t, k) => `O algoritmo do LinkedIn mudou de novo e sua estratégia de ${t} ficou obsoleta. ⚡
 
-    const prompts = [
-        "Hyper-realistic cinematic B2B office scene, dark atmospheric lighting with Sales Rocket orange glow, 8k resolution --ar 16:9",
-        "3D render: A brain made of glowing orange circuits connected to a rocket launching, futuristic navy background --ar 16:9",
-        "Modern corporate boardroom, glass walls, sunset city view, holographic sales data charts in orange and blue, photorealistic --ar 16:9"
-    ];
+Você percebeu a queda no alcance? Não é coincidência. O LinkedIn agora privilegia o "Dwell Time" e a profundidade da conversa, não apenas o like vazio.
 
-    document.getElementById('gerarBtn').onclick = () => {
-        const p = document.getElementById('perfil').value;
-        const type = document.getElementById('tipo').value;
-        const tema = document.getElementById('tema').value || 'Arquitetura de Receita';
-        const key = document.getElementById('cta').value || 'EU QUERO';
-        
-        const data = perfilData[p];
-        const vars = templates[type] || templates['story-long'];
-        let content = vars[Math.floor(Math.random() * vars.length)](data, tema, key);
-        
-        // Artificial padding to hit exactly 1400-1600 if needed (smartly)
-        if(content.length < 1400) {
-            content += "\n\nPS: A janela de oportunidade para dominar este mercado está se fechando. Quem tem método escala, quem não tem, assiste. A Sales Rocket é o motor dessa transformação no Brasil.";
-        }
-        
-        const prompt = prompts[Math.floor(Math.random() * prompts.length)];
-        
-        document.getElementById('postOutput').innerHTML = content + '<button class="copy-btn" id="copyPost">COPIAR</button>';
-        document.getElementById('promptOutput').innerHTML = prompt + '<button class="copy-btn" id="copyPrompt">COPIAR</button>';
-        
-        const count = content.length;
-        document.getElementById('charCount').textContent = `Caracteres: ${count} | Tempo de leitura: ~${Math.round(count/20)}s | Status: OTIMIZADO`;
-        
-        setupCopy('copyPost', 'postOutput');
-        setupCopy('copyPrompt', 'promptOutput');
-    };
+Se você ainda posta como se estivesse no Instagram, você está desperdiçando o maior ativo do B2B: a confiança dos decisores.
 
-    function setupCopy(btnId, outId) {
-        document.getElementById(btnId).onclick = () => {
-            const text = document.getElementById(outId).innerText.replace('COPIAR', '').trim();
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = document.getElementById(btnId);
-                btn.textContent = 'COPIADO!';
-                btn.style.background = '#4CAF50';
-                setTimeout(() => { 
-                    btn.textContent = 'COPIAR'; 
-                    btn.style.background = 'var(--border)'; 
-                }, 2000);
-            });
+A estratégia infalível hoje baseia-se em 3 pilares que aplicamos na ${d.empresa}:
+1. Autoridade Técnica (Sem "papo furado")
+2. Social Proof Dinâmico
+3. Escassez de Acesso
+
+Quem dominar ${t} nos próximos 6 meses terá o monopólio da atenção no seu nicho. Quem ignorar, vai pagar 3x mais caro no tráfego pago para tentar compensar o silêncio orgânico.
+
+O mercado B2B brasileiro é relacional. O algoritmo é apenas o meio, o método ${d.f} é o fim.
+
+Quer saber como hackear essa nova fase e garantir sua agenda cheia?
+
+Eu tenho 5 vagas para sessões estratégicas de ${t} este mês. Digite "${k}" nos comentários se você quer ser um dos 5 que vão ditar as regras do mercado.
+
+#LinkedInAlgorithm #B2BMarketing #SalesRocket #DemandGen #Revenue`
+            ]
         };
-    }
-</script>
+
+        const prompts = [
+            "Hyper-realistic cinematic B2B office scene, dark atmospheric lighting with Sales Rocket orange glow, 8k resolution --ar 16:9",
+            "3D render: A brain made of glowing orange circuits connected to a rocket launching, futuristic navy background --ar 16:9",
+            "Modern corporate boardroom, glass walls, sunset city view, holographic sales data charts in orange and blue, photorealistic --ar 16:9"
+        ];
+
+        document.getElementById('gerarBtn').onclick = () => {
+            const p = document.getElementById('perfil').value;
+            const type = document.getElementById('tipo').value;
+            const tema = document.getElementById('tema').value || 'Arquitetura de Receita';
+            const key = document.getElementById('cta').value || 'EU QUERO';
+            
+            const data = perfilData[p];
+            const vars = templates[type] || templates['story-long'];
+            let content = vars[Math.floor(Math.random() * vars.length)](data, tema, key);
+
+            // Robust Smart Padding for LinkedIn Algorithm (Target 1400-1600 chars)
+            const paddingText = [
+                "
+
+PS: A janela de oportunidade para dominar este mercado está se fechando rápido. No mercado brasileiro, quem tem método escala, quem não tem, apenas assiste aos outros crescerem.",
+                "
+A Sales Rocket é o motor dessa transformação no Brasil, trazendo rituais e processos que antes eram exclusivos do Vale do Silício para a realidade local.",
+                "
+O tempo é o único recurso que você não consegue recuperar. Profissionalizar sua operação não é mais um diferencial, é um requisito de sobrevivência para o próximo trimestre."
+            ];
+
+            let i = 0;
+            while(content.length < 1400 && i < paddingText.length) {
+                content += paddingText[i];
+                i++;
+            }
+
+            const prompt = prompts[Math.floor(Math.random() * prompts.length)];
+
+            document.getElementById('postOutput').innerHTML = content + '<button class="copy-btn" id="copyPost">COPIAR</button>';
+            document.getElementById('promptOutput').innerHTML = prompt + '<button class="copy-btn" id="copyPrompt">COPIAR</button>';
+
+            const count = content.length;
+            const status = count >= 1400 ? 'OTIMIZADO' : 'MÍNIMO ATINGIDO';
+            document.getElementById('charCount').textContent = `Caracteres: ${count} | Tempo de leitura: ~${Math.round(count/20)}s | Status: ${status}`;
+
+            setupCopy('copyPost', 'postOutput');
+            setupCopy('copyPrompt', 'promptOutput');
+        };
+
+        function setupCopy(btnId, outId) {
+            const btn = document.getElementById(btnId);
+            if (!btn) return;
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                const text = document.getElementById(outId).innerText.replace('COPIAR', '').trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    btn.textContent = 'COPIADO!';
+                    btn.style.background = '#4CAF50';
+                    setTimeout(() => {
+                        btn.textContent = 'COPIAR';
+                        btn.style.background = 'var(--border)';
+                    }, 2000);
+                });
+            };
+        }
+    </script>
 </body>
 </html>
