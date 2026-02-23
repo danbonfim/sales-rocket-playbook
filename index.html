@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Rocket | Ultra Playbook & Content Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF5C00; /* Laranja Sales Rocket */
+            --bg: #0B0D11;
+            --card-bg: #161B22;
+            --text: #E6EDF3;
+            --text-muted: #8B949E;
+            --border: #30363D;
+            --accent: #1F6FEB;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span { color: white; }
+
+        .badge {
+            background: rgba(255, 92, 0, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+        }
+
+        /* Tabs/Navigation */
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .nav-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .section-content { display: none; animation: fadeIn 0.5s ease; }
+        .section-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Playbook Content Styles */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
+
+        .card h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .highlight-box {
+            background: rgba(31, 111, 235, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Generator Styles */
+        .generator-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+
+        select, input, textarea {
+            width: 100%;
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.8rem;
+            color: white;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(255, 92, 0, 0.2);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover { background: #E65300; transform: scale(1.02); }
+
+        .output-area {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .output-box {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+            max-height: 400px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--border);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .copy-btn:hover { background: var(--primary); }
+
+        .pill-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .pill {
+            background: var(--border);
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .pill.active { background: var(--primary); color: white; }
+
+        @media (max-width: 900px) {
+            .generator-layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo">🚀 Sales <span>Rocket</span></div>
+        <div class="badge">Ultra Playbook v2.0</div>
+    </header>
+
+    <div class="nav-tabs">
+        <div class="nav-tab active" onclick="showSection('playbook')">Ultra Playbook</div>
+        <div class="nav-tab" onclick="showSection('generator')">Gerador de Conteúdo</div>
+    </div>
+
+    <!-- PLAYBOOK SECTION -->
+    <div id="playbook" class="section-content active">
+        <h2 style="margin-bottom: 2rem;">Estratégia Coordenada de Geração de Demanda</h2>
+        
+        <div class="grid-3">
+            <div class="card">
+                <h3>Gabriel Dias</h3>
+                <p><strong>O Estrategista:</strong> Foca em GTM, visão C-level e transformação comercial. Atrai CEOs e Fundadores através de storytelling de alto impacto.</p>
+                <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--primary)">Keywords: ESTRATÉGIA, C-LEVEL, CASE</div>
+            </div>
+            <div class="card">
+                <h3>Enrico Bianchi</h3>
+                <p><strong>O Operador:</strong> Foca em processos, rituais, CRM e rotina comercial. Resolve a dor do "dia a dia quebrado" para gestores e heads.</p>
+                <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--primary)">Keywords: PROCESSO, CRM, RITUAL</div>
+            </div>
+            <div class="card">
+                <h3>Thiago Hortolan</h3>
+                <p><strong>O Gerador de Demanda:</strong> Foca em pipeline, outbound e social selling. É o especialista em "encher o balde" para times de SDR e Growth.</p>
+                <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--primary)">Keywords: PIPE, SDR, PLAYBOOK</div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <h4>A Lógica do Lead Magnet Infalível</h4>
+            <p>Não postamos por postar. Cada publicação é uma isca estratégica (Lead Magnet) que resolve um problema imediato. A regra é: <strong>Valor Real → Engajamento → Keyword → DM de Diagnóstico → Reunião.</strong></p>
+        </div>
+    </div>
+
+    <!-- GENERATOR SECTION -->
+    <div id="generator" class="section-content">
+        <div class="generator-layout">
+            <div class="form-panel">
+                <div class="form-group">
+                    <label>Perfil do Autor</label>
+                    <select id="perfil">
+                        <option value="gabriel">Gabriel Dias (O Estrategista)</option>
+                        <option value="enrico">Enrico Bianchi (O Operador)</option>
+                        <option value="thiago">Thiago Hortolan (O Gerador de Demanda)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de Post</label>
+                    <select id="tipo">
+                        <option value="storytelling">Storytelling (Jornada do Herói)</option>
+                        <option value="lista">Lista / Checklist de Erros</option>
+                        <option value="how-to">How-to (Framework Prático)</option>
+                        <option value="antes-depois">Antes vs Depois (Case)</option>
+                        <option value="decisao">Decisão Estratégica (C-Level)</option>
+                        <option value="hack">Hack de Geração de Demanda</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tema / Hook Principal</label>
+                    <input type="text" id="tema" placeholder="Ex: Por que seu GTM está matando suas vendas">
+                </div>
+
+                <div class="form-group">
+                    <label>Keyword do CTA</label>
+                    <select id="cta">
+                        <option value="CASE">CASE (Case de Sucesso)</option>
+                        <option value="PROCESSO">PROCESSO (Template de Cadência)</option>
+                        <option value="CRM">CRM (Checklist de Implantação)</option>
+                        <option value="PLAYBOOK">PLAYBOOK (Guia Completo)</option>
+                        <option value="ESTRATÉGIA">ESTRATÉGIA (Report C-Level)</option>
+                        <option value="PIPE">PIPE (Matriz de Mensagens)</option>
+                        <option value="SDR">SDR (Scripts de Abordagem)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Contexto Extra (Opcional)</label>
+                    <textarea id="contexto" rows="3" placeholder="Detalhes específicos para personalizar o conteúdo..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Tom de Voz</label>
+                    <div class="pill-group" id="tom-pills">
+                        <div class="pill active" data-tom="direto">Direto</div>
+                        <div class="pill" data-tom="provocativo">Provocativo</div>
+                        <div class="pill" data-tom="educativo">Educativo</div>
+                        <div class="pill" data-tom="inspiracional">Inspiracional</div>
+                    </div>
+                </div>
+
+                <button class="btn" id="gerarBtn">Gerar Conteúdo Ultra-Especialista</button>
+            </div>
+
+            <div class="output-area">
+                <label>Post LinkedIn Sugerido</label>
+                <div class="output-box" id="postOutput">Os resultados aparecerão aqui...<button class="copy-btn" id="copyPost" style="display:none">Copiar</button></div>
+
+                <label>Prompt para Imagem (Nano Banana)</label>
+                <div class="output-box" id="promptOutput">O prompt de imagem aparecerá aqui...<button class="copy-btn" id="copyPrompt" style="display:none">Copiar</button></div>
+                
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">
+                    💡 Cada geração é única. Clique novamente para novas variações de hooks e estruturas.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab Switching
+    function showSection(sectionId) {
+        document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Tom selection
+    document.querySelectorAll('.pill').forEach(p => {
+        p.addEventListener('click', function() {
+            document.querySelectorAll('#tom-pills .pill').forEach(el => el.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Content Generation Logic
+    const perfilData = {
+        gabriel: {
+            nome: 'Gabriel Dias',
+            frameworks: ['MEDDIC', 'Challenger Sale', 'GAP Selling'],
+            gtm: 'Sales-Led',
+            foco: 'visão estratégica e decisões C-level'
+        },
+        enrico: {
+            nome: 'Enrico Bianchi',
+            frameworks: ['SPIN Selling', 'BANT', 'Pipeline Velocity'],
+            gtm: 'Operational Efficiency',
+            foco: 'processos, rituais e gestão de CRM'
+        },
+        thiago: {
+            nome: 'Thiago Hortolan',
+            frameworks: ['Outbound 2.0', 'Predictable Revenue', 'Social Selling'],
+            gtm: 'Demand Generation',
+            foco: 'prospecção e construção de pipeline'
+        }
+    };
+
+    const templates = {
+        storytelling: [
+            (d, t, c, k) => `Semana passada eu estava em uma call com um CEO que me disse algo preocupante:
+
+"${t}"
+
+A dor era clara: ele tinha vendedores bons, mas o resultado era uma montanha-russa. Um mês batiam a meta, no outro ficavam 40% abaixo.
+
+Fomos olhar o GTM dele. O problema não eram as pessoas. Era o método.
+
+Implementamos o framework ${d.frameworks[0]} e em 45 dias a previsibilidade saltou 200%.
+
+${c || 'No mercado B2B brasileiro, vender sem processo é contar com a sorte.'}
+
+Quer ver como estruturamos esse case?
+
+💬 Comenta **${k}** que te mando o report completo no privado.`,
+            (d, t, c, k) => `Eu perdi um grande projeto no ano passado porque não segui meu próprio processo.
+
+O tema era: ${t}.
+
+Eu achei que a autoridade do meu perfil resolveria, mas no B2B de alta performance, se o GTM não está alinhado com a operação, o deal trava.
+
+Na Sales Rocket, aprendemos que ${d.foco} é o que separa quem cresce 10% de quem escala 100%.
+
+${c}
+
+💬 Digita **${k}** aqui embaixo e eu te mando os detalhes desse aprendizado.`
+        ],
+        lista: [
+            (d, t, c, k) => `7 sinais de que seu time comercial está operando "no escuro":
+
+1. Forecast é baseado em "feeling" e não em dados.
+2. CRM é um cemitério de leads.
+3. O GTM está no PPT, mas não no dia a dia.
+4. Cada vendedor segue um processo diferente.
+5. O ciclo de venda é 2x maior que o planejado.
+6. Onboarding de novos talentos demora 6 meses.
+7. Ninguém sabe por que perdeu o último deal.
+
+Se você identificou 3+, você tem um problema de ${d.foco}.
+
+${c}
+
+Quer o checklist para resolver isso?
+
+💬 Comenta **${k}** agora.`
+        ],
+        hack: [
+            (d, t, c, k) => `O hack de 2 minutos para aumentar sua taxa de reuniões hoje:
+
+O tema é ${t}.
+
+Para o mercado brasileiro, conexão e rapport são tudo. Mas escala exige tecnologia.
+
+A Sales Rocket utiliza o framework ${d.frameworks[2]} para garantir que o pipeline nunca seque.
+
+${c}
+
+Montei um guia com os scripts exatos que estamos usando.
+
+💬 Comenta **${k}** para receber.`
+        ],
+        'antes-depois': [
+            (d, t, c, k) => `Antes da Sales Rocket: Pipeline vazio e desespero no fim do mês.
+
+Depois da Sales Rocket: Processo previsível e crescimento de 220%.
+
+O segredo? Não foi "vender mais", foi estruturar o ${d.gtm} de forma cirúrgica.
+
+O tema central foi: ${t}.
+
+${c}
+
+💬 Comenta **${k}** que te mando o passo a passo dessa transformação.`
+        ]
+    };
+
+    const promptImages = [
+        (t) => `Cinematic office environment, professional B2B atmosphere, high contrast, Sales Rocket branding elements (rocket icon, orange accents), minimalist style. Theme: ${t} --ar 16:9 --style raw --v 6`,
+        (t) => `Conceptual abstract 3D visualization of a sales pipeline growing, vibrant orange energy flowing through navy blue glass structures, corporate futuristic style. Theme: ${t} --ar 16:9 --v 6`
+    ];
+
+    document.getElementById('gerarBtn').addEventListener('click', function() {
+        const perf = document.getElementById('perfil').value;
+        const type = document.getElementById('tipo').value;
+        const theme = document.getElementById('tema').value || "Estratégia de Vendas";
+        const ctx = document.getElementById('contexto').value;
+        const keyw = document.getElementById('cta').value;
+
+        const data = perfilData[perf];
+        const selectedTemplates = templates[type] || templates['storytelling'];
+        const randomTemplate = selectedTemplates[Math.floor(Math.random() * selectedTemplates.length)];
+        
+        const generatedPost = randomTemplate(data, theme, ctx, keyw);
+        const randomPrompt = promptImages[Math.floor(Math.random() * promptImages.length)](theme);
+
+        document.getElementById('postOutput').textContent = generatedPost;
+        document.getElementById('promptOutput').textContent = randomPrompt;
+        document.getElementById('copyPost').style.display = 'block';
+        document.getElementById('copyPrompt').style.display = 'block';
+    });
+
+    // Copy Logic
+    function setupCopy(btnId, outputId) {
+        document.getElementById(btnId).addEventListener('click', function() {
+            const text = document.getElementById(outputId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = this.textContent;
+                this.textContent = 'Copiado!';
+                setTimeout(() => this.textContent = originalText, 2000);
+            });
+        });
+    }
+
+    setupCopy('copyPost', 'postOutput');
+    setupCopy('copyPrompt', 'promptOutput');
+
+</script>
+
+</body>
+</html>
