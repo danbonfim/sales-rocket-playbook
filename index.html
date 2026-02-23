@@ -177,7 +177,7 @@
 <div class="container">
     <header>
         <div class="logo">🚀 Sales <span>Rocket</span></div>
-        <div class="badge">Ultra Playbook v2.1</div>
+        <div class="badge">Ultra Playbook v2.2</div>
     </header>
 
     <div class="nav-tabs">
@@ -187,9 +187,9 @@
 
     <div id="playbook" class="section-content active">
         <div class="grid-3">
-            <div class="card"><h3>Gabriel Dias</h3><p>O Estrategista comercial.</p></div>
-            <div class="card"><h3>Enrico Bianchi</h3><p>O Operador comercial.</p></div>
-            <div class="card"><h3>Thiago Hortolan</h3><p>O Gerador de Demanda.</p></div>
+            <div class="card"><h3>Gabriel Dias</h3><p>O Estrategista comercial focado em GTM e visão C-level.</p></div>
+            <div class="card"><h3>Enrico Bianchi</h3><p>O Operador comercial focado em processos e CRM.</p></div>
+            <div class="card"><h3>Thiago Hortolan</h3><p>O Gerador de Demanda focado em outbound e pipeline.</p></div>
         </div>
     </div>
 
@@ -256,63 +256,75 @@
 
     const templates = {
         storytelling: [
-            (d, t, k) => `História real sobre ${t}.
-No B2B, sem ${d.foco}, nada escala.
-Implementamos ${d.frameworks[0]} e mudamos o jogo.
-💬 Comenta ${k} que mando o case.`
+            (d, t, k) => `Sabe aquela sensação de que você está vendendo muito, mas não está crescendo?
+Aconteceu com um cliente que falava sobre ${t}.
+O problema era a falta de ${d.foco}.
+Fomos lá, aplicamos o framework ${d.frameworks[0]} e em 90 dias a previsibilidade saltou.
+No B2B, sem método, você está apenas contando com a sorte.
+💬 Comenta ${k} que eu te mando os detalhes dessa jornada.`
         ],
         lista: [
-            (d, t, k) => `5 erros sobre ${t}:
-1. Sem processo
-2. Sem ${d.foco}
-3. CRM ignorado
-4. GTM fraco
-5. Time perdido
-Quer o checklist? Comenta ${k}.`
+            (d, t, k) => `Pare de cometer esses 5 erros em ${t}:
+1. Não ter um GTM claro
+2. Ignorar a ${d.foco} no dia a dia
+3. CRM sem dados confiáveis
+4. Usar scripts genéricos
+5. Falta de rituais de gestão
+Qual desses mais te atrapalha hoje?
+Comenta ${k} para receber o meu checklist completo.`
         ],
         'how-to': [
-            (d, t, k) => `Passo a passo para ${t}:
-1. Diagnóstico de ${d.foco}
-2. Framework ${d.frameworks[0]}
-3. Execução.
-Comenta ${k} para o guia.`
+            (d, t, k) => `Como estruturar ${t} do jeito certo em 3 passos:
+1. Comece pela ${d.foco} (o fundamento)
+2. Aplique o framework ${d.frameworks[0]} para dar escala
+3. Crie rituais de acompanhamento semanais.
+Simples, mas 90% das empresas pulam etapas.
+💬 Comenta ${k} para baixar o guia prático.`
         ],
         'antes-depois': [
-            (d, t, k) => `Cenário A: Caos em ${t}.
-Cenário B: Crescimento com ${d.foco}.
-A ponte foi o método Sales Rocket.
-Comenta ${k}.`
+            (d, t, k) => `Cenário A: Vendas "na raça" e pipeline vazio em ${t}.
+Cenário B: Receita previsível e time acelerado com ${d.foco}.
+A diferença? O método Sales Rocket aplicado à realidade brasileira.
+Quer sair do Cenário A?
+Comenta ${k} aqui embaixo.`
         ],
         decisao: [
-            (d, t, k) => `Decisão C-level sobre ${t}.
-Escolher entre contratar mais gente ou arrumar ${d.foco}.
-O framework ${d.frameworks[1]} ajuda aqui.
-Comenta ${k}.`
+            (d, t, k) => `Uma decisão de C-level que muda tudo em ${t}:
+Continuar tentando "vender mais" ou parar para arrumar a ${d.foco}.
+Usamos o ${d.frameworks[1]} para tomar essa decisão com base em dados.
+A escala só vem depois do processo.
+Comenta ${k} para ver nosso relatório estratégico.`
         ],
         hack: [
-            (d, t, k) => `Hack de 1 minuto para ${t}.
-Use ${d.frameworks[0]} para destravar.
-Comenta ${k} que mando o script.`
+            (d, t, k) => `O hack de 30 segundos que estamos usando na Sales Rocket para ${t}:
+Em vez de focar no produto, foque na dor de ${d.foco}.
+Use o framework ${d.frameworks[0]} na sua próxima call.
+Quer o script exato?
+Comenta ${k} agora.`
         ]
     };
 
     document.getElementById('gerarBtn').onclick = () => {
         const p = document.getElementById('perfil').value;
         const type = document.getElementById('tipo').value;
-        const tema = document.getElementById('tema').value || 'Vendas B2B';
+        const tema = document.getElementById('tema').value || 'Vendas B2B de Alta Performance';
         const key = document.getElementById('cta').value;
 
         const data = perfilData[p];
         const content = templates[type][0](data, tema, key);
         
         document.getElementById('postOutput').firstChild.textContent = content;
-        document.getElementById('promptOutput').firstChild.textContent = "3D isometric sales pipeline visualization, orange and navy colors, professional style --ar 16:9";
+        document.getElementById('promptOutput').firstChild.textContent = "Minimalist B2B sales office, 3D render style, Sales Rocket colors (navy and orange), dramatic lighting, focus on growth chart --ar 16:9";
     };
 
     function setupCopy(btnId, outId) {
         document.getElementById(btnId).onclick = () => {
             const text = document.getElementById(outId).firstChild.textContent;
-            navigator.clipboard.writeText(text).then(() => alert('Copiado!'));
+            navigator.clipboard.writeText(text).then(() => {
+                const b = document.getElementById(btnId);
+                b.textContent = 'Copiado!';
+                setTimeout(() => b.textContent = 'Copiar', 2000);
+            });
         };
     }
     setupCopy('copyPost', 'postOutput');
