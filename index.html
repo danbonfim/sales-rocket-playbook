@@ -96,8 +96,7 @@
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            gap: 1.5rem; margin-bottom: 3rem;
         }
 
         .card {
@@ -120,6 +119,13 @@
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 2rem;
+        }
+
+        .form-panel {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
 
         .form-group { margin-bottom: 1.5rem; }
@@ -149,45 +155,45 @@
         .btn:hover { background: #E65300; }
 
         .output-area {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            position: sticky;
-            top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .output-box {
             background: #0D1117;
             border: 1px solid var(--border);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
             white-space: pre-wrap;
-            font-size: 0.9rem;
-            min-height: 100px;
+            font-size: 0.95rem;
+            min-height: 150px;
             position: relative;
+            color: var(--text);
         }
 
         .copy-btn {
             position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
+            top: 0.75rem;
+            right: 0.75rem;
             background: var(--border);
             color: white;
             border: none;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: 0.2s;
         }
+        .copy-btn:hover { background: var(--accent); }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="logo">🚀 Sales <span>Rocket</span></div>
-            <div class="badge">Ultra Playbook v2.5</div>
+            <div class="badge">Ultra Playbook v2.7</div>
         </header>
 
         <div class="nav-tabs">
@@ -250,11 +256,14 @@
                 </div>
 
                 <div class="output-area">
-                    <label>LinkedIn Post</label>
-                    <div class="output-box" id="postOutput">...<button class="copy-btn" id="copyPost">Copiar</button></div>
-                    
-                    <label>Image Prompt (Nano Banana)</label>
-                    <div class="output-box" id="promptOutput">...<button class="copy-btn" id="copyPrompt">Copiar</button></div>
+                    <div>
+                        <label>LinkedIn Post</label>
+                        <div class="output-box" id="postOutput">Os melhores posts B2B começam com um clique...<button class="copy-btn" id="copyPost">Copiar</button></div>
+                    </div>
+                    <div>
+                        <label>Image Prompt (Nano Banana)</label>
+                        <div class="output-box" id="promptOutput">Prompts visuais otimizados aparecerão aqui.<button class="copy-btn" id="copyPrompt">Copiar</button></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -265,24 +274,26 @@
             document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            event.currentTarget.classList.add('active');
+            const tabs = document.querySelectorAll('.nav-tab');
+            if(id === 'playbook') tabs[0].classList.add('active');
+            else tabs[1].classList.add('active');
         }
 
         const perfilData = {
             gabriel: { 
                 foco: 'estratégia e visão C-level', 
                 frameworks: ['MEDDIC', 'GTM Architect'],
-                tom: 'visionário e analítico'
+                tom: 'visionário'
             },
             enrico: { 
                 foco: 'processos e CRM', 
                 frameworks: ['Pipeline Velocity', 'CRM Ops'],
-                tom: 'prático e direto'
+                tom: 'metódico'
             },
             thiago: { 
                 foco: 'demanda e outbound', 
                 frameworks: ['Social Selling', 'Outbound 2.0'],
-                tom: 'agressivo e focado em volume/qualidade'
+                tom: 'executor'
             }
         };
 
@@ -399,33 +410,19 @@ Quer saber como? Comenta ${k}.`
             const data = perfilData[p];
             const variations = templates[type];
             
-            // Randomly select template for variety
             const randomVar = variations[Math.floor(Math.random() * variations.length)];
             const content = randomVar(data, tema, key);
-            
-            // Randomly select prompt
             const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
 
-            // Clear and update content (preserving copy button)
-            const postBox = document.getElementById('postOutput');
-            const promptBox = document.getElementById('promptOutput');
+            document.getElementById('postOutput').innerHTML = content + '<button class="copy-btn" id="copyPost">Copiar</button>';
+            document.getElementById('promptOutput').innerHTML = randomPrompt + '<button class="copy-btn" id="copyPrompt">Copiar</button>';
             
-            // Update text nodes carefully
-            updateBox(postBox, content);
-            updateBox(promptBox, randomPrompt);
+            setupCopy('copyPost', 'postOutput');
+            setupCopy('copyPrompt', 'promptOutput');
         };
-
-        function updateBox(box, text) {
-            const btn = box.querySelector('.copy-btn');
-            box.innerText = text + '
-
-';
-            box.appendChild(btn);
-        }
 
         function setupCopy(btnId, outId) {
             document.getElementById(btnId).onclick = (e) => {
-                e.stopPropagation();
                 const box = document.getElementById(outId);
                 const btn = document.getElementById(btnId);
                 const text = box.innerText.replace('Copiar', '').trim();
@@ -438,8 +435,6 @@ Quer saber como? Comenta ${k}.`
                         btn.textContent = originalText;
                         btn.style.background = 'var(--border)';
                     }, 2000);
-                }).catch(err => {
-                    console.error('Erro ao copiar: ', err);
                 });
             };
         }
